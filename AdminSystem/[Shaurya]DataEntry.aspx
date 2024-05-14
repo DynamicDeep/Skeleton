@@ -23,40 +23,43 @@
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center align buttons */
         }
         .form-group {
             margin-bottom: 15px;
+            text-align: left; /* Align labels to the left */
         }
         label {
             color: #999;
             margin-bottom: 0px;
             display: block;
-            font-size: 15px; /* Tamanho do rótulo reduzido */
-            
+            font-size: 15px;
         }
         input[type="text"],
         input[type="datetime-local"],
         input[type="file"] {
             width: calc(100% - 20px);
-            padding: 5px; /* Tamanho da caixa de texto reduzido */
+            padding: 5px;
             border: 1px solid #ccc;
             border-radius: 3px;
             box-sizing: border-box;
             display: block;
             margin: 0 auto;
-            font-size: 12px; /* Tamanho da fonte reduzido */
+            font-size: 12px;
         }
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 15px; /* Tamanho do botão reduzido */
+            padding: 10px 15px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 14px; /* Tamanho da fonte do botão */
+            font-size: 14px;
             width: calc(100% - 20px);
             display: block;
             margin: 0 auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         input[type="submit"]:hover {
             background-color: #45a049;
@@ -65,6 +68,36 @@
             color: red;
             font-size: 12px;
             margin-top: 5px;
+        }
+
+        /* Button styles */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        button, input[type="submit"] {
+            flex: 1;
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 0; /* Adjust padding */
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 5px; /* Adjust margin for spacing */
+            width: 100px; /* Fixed width for buttons */
+        }
+
+        /* Green background color for clicked Back button */
+        .clicked {
+            background-color: green !important;
+        }
+
+        /* Red color for Clear button on hover */
+        button:hover {
+            background-color: red;
         }
     </style>
 </head>
@@ -102,9 +135,26 @@
                 <input type="file" id="image" name="image" required>
             </div>
 
-            <input type="submit" value="Submit">
+            <div class="button-container"> <!-- Flex container for buttons -->
+                <!-- Buttons for clear, back, and submit -->
+                <button id="clearButton" onclick="clearForm()">Clear</button>
+                <button id="backButton" onclick="goBack()">Back</button>
+                <input type="submit" value="Submit">
+            </div>
+            
             <div id="error-message" class="error-message" style="display: none;"></div>
         </form>
     </div>
+
+    <script>
+        function clearForm() {
+            document.getElementById("book-form").reset();
+        }
+
+        function goBack() {
+            document.getElementById("backButton").classList.add("clicked");
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
