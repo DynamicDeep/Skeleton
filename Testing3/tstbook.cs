@@ -43,7 +43,6 @@ namespace Testing3
             Book.Genre = TestData;
             Assert.AreEqual(Book.Genre, TestData);
       
-        }
         [TestMethod]
         public void AuthorPropertyOK()
         {
