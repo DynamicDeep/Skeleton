@@ -8,5 +8,7 @@ namespace Testing3
         public string Author { get; internal set; }
         public DateTime PublicationDate { get; internal set; }
         public decimal Price { get; internal set; }
+        public string Genre { get; internal set; }
+        public string BookId { get; internal set; }
     }
 }

@@ -12,6 +12,18 @@ namespace Testing3
             clsbook Book = new clsbook();
             Assert.IsNotNull(Book);
         }
+
+        [TestMethod]
+        public void BookIdPropertyOKk()
+        {
+            clsbook Book = new clsbook();
+            string TestData = "Romeu";
+            Book.BookId = TestData;
+            Assert.AreEqual(Book.BookId, TestData);
+
+        }
+
+
         [TestMethod]
         public void TitlePropertyOKk()
         {
@@ -24,14 +36,24 @@ namespace Testing3
 
         }
         [TestMethod]
+        public void GenrePropertyOK()
+        {
+            clsbook Book = new clsbook();
+            string TestData = "Shakespeare";
+            Book.Genre = TestData;
+            Assert.AreEqual(Book.Genre, TestData);
+      
+        }
+        [TestMethod]
         public void AuthorPropertyOK()
         {
             clsbook Book = new clsbook();
             string TestData = "Shakespeare";
             Book.Author = TestData;
             Assert.AreEqual(Book.Author, TestData);
-      
+
         }
+
         [TestMethod]
         public void PublicationyearOK()
         {
