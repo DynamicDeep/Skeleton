@@ -34,6 +34,22 @@ namespace Testing3
                 Assert.AreEqual(Book.Title, TestData);
 
             }
+            [TestMethod]
+            public void BookIdPropertyokPropertyOK()
+            {
+                // Crie uma instância da classe que você deseja testar
+                clsbook Book = new clsbook();
+
+                // Crie alguns dados de teste para atribuir à propriedade
+                int TestData = 1; // Use int em vez de Int32
+
+                // Atribua os dados à propriedade
+                Book.BookId = TestData;
+
+                // Teste para ver se os dois valores são iguais
+                Assert.AreEqual(Book.BookId, TestData);
+            }
+
 
             [TestMethod]
             public void AuthorPropertyOK()
@@ -102,8 +118,53 @@ namespace Testing3
                 Assert.IsNotNull(Genre);
 
             }
-           
 
+            [TestMethod]
+            public void GenreIdPropertyOk()
+            {
+                // Crie uma instância da classe que você deseja testar
+                clsGenre Genre = new clsGenre();
+
+                // Crie alguns dados de teste para atribuir à propriedade
+                int TestData = 1; // Use int em vez de Int32
+
+                // Atribua os dados à propriedade
+                Genre.GenreId = TestData;
+
+                // Teste para ver se os dois valores são iguais
+                Assert.AreEqual(Genre.GenreId, TestData);
+            }
+            [TestMethod]
+            public void GenredPropertyOk()
+            {
+                // Crie uma instância da classe que você deseja testar
+                clsGenre Genre = new clsGenre();
+
+                // Crie alguns dados de teste para atribuir à propriedade
+                string TestData = "Romeu&Julheta"; // Use int em vez de Int32
+
+                // Atribua os dados à propriedade
+                Genre.Genre = TestData;
+
+                // Teste para ver se os dois valores são iguais
+                Assert.AreEqual(Genre.Genre, TestData);
+            }
+
+            [TestMethod]
+            public void GenrePropertyOk()
+            {
+                // Crie uma instância da classe que você deseja testar
+                clsGenre Genre = new clsGenre();
+
+                // Crie alguns dados de teste para atribuir à propriedade
+                int TestData = 1; // Assume que BookId é do tipo int
+
+                // Atribua os dados à propriedade
+                Genre.BookId = TestData;
+
+                // Teste para ver se os dois valores são iguais
+                Assert.AreEqual(Genre.BookId, TestData);
+            }
 
         }
 
