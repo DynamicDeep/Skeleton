@@ -16,7 +16,6 @@ namespace Testing3
         [TestClass]
         public class tstGenre
         {
-            public object Genre { get; private set; }
 
             [TestMethod]
             public void InstanceOk()
@@ -56,6 +55,19 @@ namespace Testing3
 
             }
             [TestMethod]
+            public void DescriptionPropertyOK()
+            {
+                // Arrange
+                clsbook Book = new clsbook();
+                string TestData = "This is a test description.";
+
+                // Act
+                Book.Description = TestData;
+
+                // Assert
+                Assert.AreEqual(Book.Description, TestData);
+            }
+            [TestMethod]
             public void PricePropertyOK()
             {
                 clsbook Book = new clsbook();
@@ -64,6 +76,7 @@ namespace Testing3
                 Assert.AreEqual(Book.Price, TestData);
 
             }
+
             [TestMethod]
             public void BookManagementPropertyoOK()
             {
@@ -89,25 +102,7 @@ namespace Testing3
                 Assert.IsNotNull(Genre);
 
             }
-            [TestMethod]
-            public void GenreIdPropertyOk()
-            {
-                clsGenre Genre = new clsGenre();
-                int TestData = 0;
-                Genre.Genre = TestData;
-                Assert.AreEqual(Genre.Genre, TestData);
-
-            }
-         
-            [TestMethod]
-            public void BookIdforigianyOK()
-            {
-                clsGenre Book = new clsGenre();
-                int TestData = 1;
-               Book.BookId = TestData;
-                Assert.AreEqual(Book.BookId, TestData);
-
-            }
+           
 
 
         }

@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="[Nuno]DataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,7 +37,9 @@
         }
         input[type="text"],
         input[type="datetime-local"],
-        input[type="file"] {
+        input[type="file"],
+        select,
+        textarea {
             width: calc(100% - 20px);
             padding: 5px;
             border: 1px solid #ccc;
@@ -100,61 +101,73 @@
         button:hover {
             background-color: red;
         }
+
+        /* Set height of description box */
+        #description {
+            height: 100px;
+            display: block; 
+            overflow-y: auto; 
+            resize: vertical; 
+            word-wrap: break-word; 
+            vertical-align: top; 
+        }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Insert Book details</h2>
-        <form id="book-form" action="processar_dados.php" method="POST" enctype="multipart/form-data">
+    <form id="form1" runat="server">
+        <div class="form-container">
+            <h2>Insert Book details</h2>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
+                <asp:TextBox ID="title" runat="server" ></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label for="genre">Genre</label>
-                <input type="text" id="genre" name="genre" required>
+                <asp:DropDownList ID="genre" runat="server" >
+                    <asp:ListItem Value="" Text="Select Genre"></asp:ListItem>
+                    <asp:ListItem Value="Fantasy" Text="Fantasy"></asp:ListItem>
+                    <asp:ListItem Value="Science Fiction" Text="Science Fiction"></asp:ListItem>
+                    <asp:ListItem Value="Mystery" Text="Mystery"></asp:ListItem>
+                    <asp:ListItem Value="Romance" Text="Romance"></asp:ListItem>
+                </asp:DropDownList>
             </div>
 
             <div class="form-group">
                 <label for="book_name">Book Name</label>
-                <input type="text" id="book_name" name="book_name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" id="author" name="author" required>
+                <asp:TextBox ID="book_name" runat="server" ></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label for="datetime">Data/Time</label>
-                <input type="datetime-local" id="datetime" name="datetime" required>
+                <asp:TextBox ID="datetime" runat="server" ></asp:TextBox>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <asp:TextBox ID="description" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label for="image">Image</label>
-                <input type="file" id="image" name="image" required>
+                <input type="file" id="image" name="image" >
             </div>
 
             <div class="button-container"> <!-- Flex container for buttons -->
-                <!-- Buttons for clear, back, and submit -->
+                <!-- Botões para limpar, voltar e enviar -->
                 <button id="clearButton" onclick="clearForm()">Clear</button>
-                <button id="backButton" onclick="goBack()">Back</button>
-                <input type="submit" value="Submit">
+                <asp:Button ID="backButton" runat="server" Text="Back" OnClick="backButton_Click" />
+                <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
             </div>
             
             <div id="error-message" class="error-message" style="display: none;"></div>
-        </form>
-    </div>
+        </div>
+    </form>
 
+    <!-- Scripts  -->
     <script>
         function clearForm() {
-            document.getElementById("book-form").reset();
-        }
-
-        function goBack() {
-            document.getElementById("backButton").classList.add("clicked");
-            window.history.back();
+            document.getElementById("form1").reset();
         }
     </script>
 </body>
