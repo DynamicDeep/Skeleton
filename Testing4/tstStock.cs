@@ -65,16 +65,16 @@ namespace Testing4
             Assert.AreEqual(aStock.SupplierId, testData);
         }
 
-        public void isbnOK()
+        public void BookIdOK()
         {
             //Create an instance of the class we want to create 
             clsStock aStock = new clsStock();
             //Create some test data to assign to the property
-            string testData = "ISBN";
+            Int32 testData = 1;
             //Assign the data to the property
-            aStock.ISBN = testData;
+            aStock.BookId = testData;
             // Test to see that the two values are the same
-            Assert.AreEqual(aStock.ISBN, testData);
+            Assert.AreEqual(aStock.bookId, testData);
 
         }
 
