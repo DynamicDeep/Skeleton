@@ -8,6 +8,7 @@ namespace ClassLibrary
         public DateTime DateAdded { get; set; }
         public int StockId { get; set; }
         public int SupplierId { get; set; }
-        public string ISBN { get; set; }
+        public int BookId { get; set; }
+        public int bookId { get; set; }
     }
 }
