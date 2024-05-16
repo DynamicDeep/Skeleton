@@ -111,6 +111,16 @@
             word-wrap: break-word; 
             vertical-align: top; 
         }
+
+        
+ .image 
+
+    img {
+    max-width: 10%; /* Set maximum width to ensure responsiveness */
+    height: auto; /* Maintain aspect ratio */
+}
+
+        
     </style>
 </head>
 <body>
@@ -134,27 +144,38 @@
             </div>
 
             <div class="form-group">
-                <label for="book_name">Book Name</label>
-                <asp:TextBox ID="book_name" runat="server" ></asp:TextBox>
+                <label for="author">Author</label>
+                <asp:TextBox ID="author" runat="server"></asp:TextBox>
             </div>
 
-            <div class="form-group">
-                <label for="datetime">Data/Time</label>
-                <asp:TextBox ID="datetime" runat="server" ></asp:TextBox>
+           
+         
+
+           <div class="form-group">
+               <label for="publicationYear">Publication Year</label>
+               <asp:TextBox ID="publicationYear" runat="server"></asp:TextBox>
+          </div>
+
+             <div class="form-group">
+                 <label for="price">Price</label>
+                 <asp:TextBox ID="price" runat="server"></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
                 <asp:TextBox ID="description" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
+<div class="form-group">
+    <label for="image">Select Image:</label>
+    <asp:FileUpload ID="imageUpload" runat="server" />
+</div>
 
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" id="image" name="image" >
-            </div>
+<div class="image-container">
+    <asp:Image ID="uploadedImage" runat="server" CssClass="uploaded-image" />
+</div>
 
             <div class="button-container"> <!-- Flex container for buttons -->
-                <!-- Botões para limpar, voltar e enviar -->
+                <!-- Buttons to clear, go back, and submit -->
                 <button id="clearButton" onclick="clearForm()">Clear</button>
                 <asp:Button ID="backButton" runat="server" Text="Back" OnClick="backButton_Click" />
                 <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
