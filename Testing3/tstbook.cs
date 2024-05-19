@@ -144,10 +144,10 @@ namespace Testing3
                 string TestData = "Romeu&Julheta"; // Use int em vez de Int32
 
                 // Atribua os dados à propriedade
-                Genre.Genre = TestData;
+                Genre.BookGenre = TestData;
 
                 // Teste para ver se os dois valores são iguais
-                Assert.AreEqual(Genre.Genre, TestData);
+                Assert.AreEqual(Genre.BookGenre, TestData);
             }
 
             [TestMethod]
