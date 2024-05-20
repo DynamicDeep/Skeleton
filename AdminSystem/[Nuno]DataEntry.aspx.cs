@@ -25,7 +25,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         // Create instances of clsbook and clsGenre
         clsbook Book = new clsbook();
-        clsGenre Genre = new clsGenre();
+        clsGenres Genre = new clsGenres();
 
         // Assign values from TextBoxes and DropDownList to Book properties
         Book.Title = title.Text;
