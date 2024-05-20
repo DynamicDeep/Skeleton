@@ -48,6 +48,7 @@
     <Compile Include="clsGenres.cs" />
     <Compile Include="clsOrder.cs" />
     <Compile Include="clsOrder.cs" />
+    <Compile Include="clsStaff.cs" />
     <Compile Include="clsStock.cs" />
     <Compile Include="clsSupplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
