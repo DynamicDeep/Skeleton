@@ -13,7 +13,7 @@ public partial class _1Viewer : System.Web.UI.Page
         if (Session["Book"] != null && Session["Genre"] != null)
         {
             clsbook Book = (clsbook)Session["Book"];
-            clsGenre Genre = (clsGenre)Session["Genre"];
+            clsGenres Genre = (clsGenres)Session["Genre"];
 
             Response.Write("Title: " + Book.Title + "<br/>");
             Response.Write("Author: " + Book.Author + "<br/>");
