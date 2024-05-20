@@ -9,6 +9,5 @@ namespace ClassLibrary
         public int StockId { get; set; }
         public int SupplierId { get; set; }
         public int BookId { get; set; }
-        public int bookId { get; set; }
     }
 }
