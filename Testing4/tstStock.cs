@@ -58,7 +58,7 @@ namespace Testing4
             // Create an instance of the class we want to create
             clsStock aStock = new clsStock();
             // Create some test data to assign to the property
-            int testData = 1; // Change this to whatever test data you want
+            int testData = 1;
             // Assign the data to the property
             aStock.SupplierId = testData;
             // Test to see that the two values are the same
@@ -70,11 +70,11 @@ namespace Testing4
             //Create an instance of the class we want to create 
             clsStock aStock = new clsStock();
             //Create some test data to assign to the property
-            Int32 testData = 1;
+            int testData = 1;
             //Assign the data to the property
             aStock.BookId = testData;
             // Test to see that the two values are the same
-            Assert.AreEqual(aStock.bookId, testData);
+            Assert.AreEqual(aStock.BookId, testData);
 
         }
 
