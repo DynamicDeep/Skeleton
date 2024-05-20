@@ -40,6 +40,8 @@
     border-radius: 15px;
 }
 
+
+
 .input-box{
     margin-top: 30px;
     margin-left: 30px;
@@ -65,8 +67,9 @@
 
 
 .input-box label{
-    color: #fff;
+   color: #fff;
 }
+
 
 .Order-btn, .Update-btn {
     margin-top: 70px;
@@ -76,6 +79,12 @@
     left: 370px;
     height: 40px;
     width: 20%;
+    font-size: 15px;
+    font-weight:600;
+}
+
+.label{
+    color: #fff;
 }
 
 
@@ -94,19 +103,19 @@
             <div class="Hero-part">
                 <asp:Panel ID="Panel1" runat="server">
                     <div class="input-box input">
-                        <asp:Label ID="LabelISBN" runat="server" Text="ISBN Number:"></asp:Label>
-                        <asp:TextBox ID="TextBoxISBN" runat="server" placeholder="Enter ISBN Number here!"></asp:TextBox>
+                        <asp:Label class="label" ID="LabelBookNo" runat="server" Text="Book Number:"></asp:Label>
+                        <asp:TextBox ID="TextBoxBookNo" runat="server" placeholder="Enter Book Number here!"></asp:TextBox>
                     </div>
                     <div class="input-box input">
-                        <asp:Label ID="LabelQuantity" runat="server" Text="Quantity: "></asp:Label>
+                        <asp:Label class="label" ID="LabelQuantity" runat="server" Text="Quantity: "></asp:Label>
                         <asp:TextBox ID="TextBoxQuantity" runat="server" TextMode="Number"></asp:TextBox>
                     </div>
                     <div class="input-box input">
-                        <asp:Label ID="LabelDateAdded" runat="server" Text="Date: "></asp:Label>
+                        <asp:Label class="label" ID="LabelDateAdded" runat="server" Text="Date: "></asp:Label>
                         <asp:TextBox ID="TextBoxDateAdded" runat="server" TextMode="Date"></asp:TextBox>
                     </div>
                     <div class="input-box input">
-                        <asp:Label ID="LabelSupplierID" runat="server" Text="Supplier ID: "></asp:Label>
+                        <asp:Label class="label" ID="LabelSupplierID" runat="server" Text="Supplier ID: "></asp:Label>
                         <asp:TextBox ID="TextBoxSupplierID" runat="server" TextMode="Number"></asp:TextBox>
                     </div>
 
