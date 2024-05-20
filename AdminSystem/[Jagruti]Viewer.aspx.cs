@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,13 @@ public partial class _1Viewer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        clsOrder anOrder = new clsOrder();
+        anOrder = (clsOrder)Session["anOrder"];
+        Response.Write(anOrder.OrderID);
+        Response.Write(anOrder.Address);
+        Response.Write(anOrder.Price);
+        Response.Write(anOrder.DeliveryDate);
+
 
     }
 }
