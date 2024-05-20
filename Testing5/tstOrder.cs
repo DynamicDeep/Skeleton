@@ -10,10 +10,10 @@ namespace Testing5
         [TestMethod]
         public void TestMethod1()
         {
-                //create an instance of the class we want to create 
+          //create an instance of the class we want to create 
                 clsOrder AnOrder = new clsOrder();
-                //test to see that it exits
-                Assert.IsNotNull(AnOrder);
+            //test to see that it exits
+            Assert.IsNotNull(AnOrder);
         }
 
         [TestMethod]
