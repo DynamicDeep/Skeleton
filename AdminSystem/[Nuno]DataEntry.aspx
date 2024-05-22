@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="[Nuno]DataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
             margin: 0 auto;
             font-size: 12px;
         }
-        input[type="submit"] {
+        input[type="submit"], button {
             background-color: #4CAF50;
             color: white;
             padding: 10px 15px;
@@ -63,7 +64,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
-        input[type="submit"]:hover {
+        input[type="submit"]:hover, button:hover {
             background-color: #45a049;
         }
         .error-message {
@@ -112,15 +113,10 @@
             vertical-align: top; 
         }
 
-        
- .image 
-
-    img {
-    max-width: 10%; /* Set maximum width to ensure responsiveness */
-    height: auto; /* Maintain aspect ratio */
-}
-
-        
+        .image img {
+            max-width: 10%; /* Set maximum width to ensure responsiveness */
+            height: auto; /* Maintain aspect ratio */
+        }
     </style>
 </head>
 <body>
@@ -148,36 +144,34 @@
                 <asp:TextBox ID="author" runat="server"></asp:TextBox>
             </div>
 
-           
-         
+            <div class="form-group">
+                <label for="publicationYear">Publication Year</label>
+                <asp:TextBox ID="publicationYear" runat="server"></asp:TextBox>
+            </div>
 
-           <div class="form-group">
-               <label for="publicationYear">Publication Year</label>
-               <asp:TextBox ID="publicationYear" runat="server"></asp:TextBox>
-          </div>
-
-             <div class="form-group">
-                 <label for="price">Price</label>
-                 <asp:TextBox ID="price" runat="server"></asp:TextBox>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <asp:TextBox ID="price" runat="server"></asp:TextBox>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
                 <asp:TextBox ID="description" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
-<div class="form-group">
-    <label for="image">Select Image:</label>
-    <asp:FileUpload ID="imageUpload" runat="server" />
-</div>
+            <div class="form-group">
+                <label for="image">Select Image:</label>
+                <asp:FileUpload ID="imageUpload" runat="server" />
+            </div>
 
-<div class="image-container">
-    <asp:Image ID="uploadedImage" runat="server" CssClass="uploaded-image" />
-</div>
+            <div class="image-container">
+                <asp:Image ID="uploadedImage" runat="server" CssClass="uploaded-image" />
+            </div>
 
             <div class="button-container"> <!-- Flex container for buttons -->
-                <!-- Buttons to clear, go back, and submit -->
+                <!-- Buttons to clear, go back, add, and submit -->
                 <button id="clearButton" onclick="clearForm()">Clear</button>
                 <asp:Button ID="backButton" runat="server" Text="Back" OnClick="backButton_Click" />
+                <asp:Button ID="FindButton" runat="server" Text="Find" OnClick="FindButton_Click" />
                 <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
             </div>
             

@@ -79,7 +79,7 @@ namespace Testing3
         public void PricePropertyOK()
         {
             clsbook Book = new clsbook();
-            Decimal TestData = 0.99m;
+            Decimal? TestData = 0.99m;
             Book.Price = TestData;
             Assert.AreEqual(Book.Price, TestData);
 
@@ -171,7 +171,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 GenreId = 21;
+            Int32 GenreId = 24;
             //invoke the method
             Found = Genre.Find(GenreId);
             //check the addess
@@ -189,11 +189,11 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 GenreId = 21;
+            Int32 GenreId = 24;
             //invoke the method
             Found = Genre.Find(GenreId);
             //check the addess
-            if (Genre.GenreId != 21)
+            if (Genre.GenreId != 24)
 
             {
                 OK = false;
@@ -215,7 +215,7 @@ namespace Testing3
             //invoke the method
             Found = Genre.Find(GenreId);
             //check the addess
-            if (Genre.BookId != 21)
+            if (Genre.BookId != 9)
 
             {
                 OK = false;
@@ -234,7 +234,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 GenreId = 21;
+            Int32 GenreId = 24;
             //invoke the method
             Found = Genre.Find(GenreId);
             //check the addess
@@ -259,7 +259,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             Assert.IsTrue(Found);
@@ -276,10 +276,10 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
-            if (Book.BookId != 21)
+            if (Book.BookId != 10)
             {
                 OK = false;
             }
@@ -300,7 +300,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the addess
@@ -332,7 +332,7 @@ namespace Testing3
 
 
         [TestMethod]
-        public void FindMetodStafManagementOK()
+        public void FindMetoBookManagementOK()
         {
             //create an instance of the class we want to create
             clsbook Book = new clsbook();
@@ -341,11 +341,11 @@ namespace Testing3
             //Create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the author
-            if (Book.Author != "Shakespeare")
+            if (Book.BookManagement != "Nuno")
             {
                 OK = false;
             }
@@ -374,7 +374,7 @@ namespace Testing3
             //Create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the author
@@ -399,11 +399,11 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the addess
-            if (Book.Price != 0.99m)
+            if (Book.Price != 10)
             {
                 OK = false;
             }
@@ -423,7 +423,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the addess
@@ -446,11 +446,11 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the addess
-            if (Book.Description !="This is my description")
+            if (Book.Description != "This is my description")
             {
                 OK = false;
             }
@@ -470,11 +470,11 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 BookId = 21;
+            Int32 BookId = 10;
             //invoke the method
             Found = Book.Find(BookId);
             //check the addess
-            if (Book.ImagePath != "/images/book1.jpg")
+            if (Book.ImagePath != "")
             {
                 OK = false;
             }
