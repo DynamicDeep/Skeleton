@@ -4,14 +4,12 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
-        public int phoneNumber;
-
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
-        public string EmailAddress { get; set; }
-        public DateTime registration { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public int InteractionId { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerPhone { get; set; }
+        public DateTime DateOfSubscription { get; set; }
+        public DateTime DateOfBirth { get; set; }  // Ensure this property exists
+        public string Gender { get; set; }  // Ensure this property exists
     }
 }

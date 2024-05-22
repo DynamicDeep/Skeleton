@@ -29,6 +29,12 @@ public class clsDataConnection
     public clsDataConnection()
     {
         connectionString = GetConnectionString();
+
+        // Set up the connection string directly here
+
+        //connectionString = "Server=localhost,1433;Database=master;User Id=sa;Password=42714271Ma;";
+        //connectionToDB = new SqlConnection(connectionString);
+
     }
 
     private string GetConnectionString()
