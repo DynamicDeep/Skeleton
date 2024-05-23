@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         aSupplier.SupplierName = TextBoxName.Text;
 
         //capture the Contact
-        aSupplier.ContactNo = int.Parse(TextBoxContactNo.Text);
+        aSupplier.ContactNo = Int32.Parse(TextBoxContactNo.Text);
 
         //capture the Address 
         aSupplier.SupplierAddress = TextBoxAddress.Text;
