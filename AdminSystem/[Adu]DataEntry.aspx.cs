@@ -26,7 +26,7 @@ public partial class _1_DataEntry : Page
             // Store the customer in the session object
             Session["Customer"] = customer;
             // Navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            Response.Redirect("[Adu]Viewer.aspx");
         }
         catch (FormatException ex)
         {
