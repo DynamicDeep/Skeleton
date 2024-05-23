@@ -10,50 +10,10 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    
+
+    public int Orderid { get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-    protected void btnOk_Click(object sender, EventArgs e)
-    {
-        
-    }
-
-    protected void btn_Cancel(object sender, EventArgs e)
-    {
-
-    }
-
-    
-
-    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void TextBox2_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void TextBox2_TextChanged1(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void TextOrderId_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtDateofOrder_TextChanged(object sender, EventArgs e)
     {
 
     }
@@ -83,7 +43,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         int price;
         if (int.TryParse(lblPrice.Text, out price))
         {
-            AnOrder.Price = price;
+            AnOrder.TotalCost = price;
         }
         else
         {
@@ -96,6 +56,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         // Redirect to AddressBookViewer.aspx page
         Response.Redirect("[Jagruti]Viewer.aspx");
+    }
+
+
+    protected void BtnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address class
+        clsOrder AnOrder = new clsOrder();
+        //create a variable to store the primary ley
+        int AnOrderId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        AnOrderId = Convert.ToInt32(txtOrderID.Text);
+        //find the record
+        Found = AnOrder.Find(AnOrderId);
+        if (Found == true)
+        {
+            //disply the value of the properties in the from
+            txtCustomerId.Text = AnOrder.CustomerId.ToString();
+            txtTotalCost.Text = AnOrder.TotalCost.ToString();
+            txtAddress.Text = AnOrder.Address.ToString();
+            txtDeliveryDate.Text = AnOrder.DeliveryDate.ToString();
+
+
+        }
+
     }
 
 }
