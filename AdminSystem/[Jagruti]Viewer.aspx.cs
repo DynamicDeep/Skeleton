@@ -12,9 +12,9 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         clsOrder anOrder = new clsOrder();
         anOrder = (clsOrder)Session["anOrder"];
-        Response.Write(anOrder.OrderID);
+        Response.Write(anOrder.OrderId);
         Response.Write(anOrder.Address);
-        Response.Write(anOrder.Price);
+        Response.Write(anOrder.TotalCost);
         Response.Write(anOrder.DeliveryDate);
 
 
