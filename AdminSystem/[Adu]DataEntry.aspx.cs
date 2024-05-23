@@ -12,21 +12,24 @@ public partial class _1_DataEntry : Page
     {
         try
         {
-            // Create a new instance of clsCustomer
-            clsCustomer customer = new clsCustomer();
-            // Capture the customer details
-            customer.CustomerID = Convert.ToInt32(txtCustomerId.Text);
-            customer.CustomerName = txtCustomerName.Text;
-            customer.CustomerEmail = txtCustomerEmail.Text;
-            customer.CustomerPhone = txtCustomerPhone.Text;  // Changed to string to match clsCustomer
-            customer.DateOfSubscription = Convert.ToDateTime(txtCustomerSubscriptionDate.Text);
-            customer.DateOfBirth = Convert.ToDateTime(txtCustomerDOB.Text);
-            customer.Gender = radioCustomerGender.SelectedValue;  // Changed to string to match clsCustomer
+            // Parse the customer ID from the input
+            int customerId = int.Parse(txtCustomerId.Text);
+
+            // Create an instance of clsCustomer with the parsed customer ID
+            clsCustomer customer = new clsCustomer(customerId)
+            {
+                CustomerName = txtCustomerName.Text,
+                CustomerEmail = txtCustomerEmail.Text,
+                CustomerPhone = txtCustomerPhone.Text,
+                CustomerDateOfBirth = DateTime.Parse(txtCustomerDOB.Text),
+                CustomerGender = radioCustomerGender.SelectedValue,
+                DateOfSubscription = DateTime.Parse(txtCustomerSubscriptionDate.Text) // Ensure this field exists and is populated
+            };
 
             // Store the customer in the session object
             Session["Customer"] = customer;
             // Navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            Response.Redirect("CustomerViewer.aspx"); // Ensure the URL is correct
         }
         catch (FormatException ex)
         {
