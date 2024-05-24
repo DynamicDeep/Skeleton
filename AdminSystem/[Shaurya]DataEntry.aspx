@@ -1,160 +1,122 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="[Shaurya]DataEntry.aspx.cs" Inherits="_1_DataEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="[Shaurya]DataEntry.aspx.cs" Inherits="_1_DataEntry" %> 
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Inserção de Dados</title>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Staff Registration</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 100px;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 50px;
         }
         h2 {
-            color: #333;
             text-align: center;
-        }
-        .form-container {
-            width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center align buttons */
+            color: #333;
         }
         .form-group {
             margin-bottom: 15px;
-            text-align: left; /* Align labels to the left */
         }
-        label {
-            color: #999;
-            margin-bottom: 0px;
+        .form-group label {
             display: block;
-            font-size: 15px;
+            margin-bottom: 5px;
+            color: #333;
         }
-        input[type="text"],
-        input[type="datetime-local"],
-        input[type="file"] {
-            width: calc(100% - 20px);
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
             box-sizing: border-box;
-            display: block;
-            margin: 0 auto;
-            font-size: 12px;
         }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
+        .btn-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
             border: none;
-            border-radius: 3px;
+            color: #fff;
             cursor: pointer;
-            font-size: 14px;
-            width: calc(100% - 20px);
-            display: block;
-            margin: 0 auto;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            border-radius: 4px;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .btn-clear {
+            background-color: #f39c12;
         }
-        .error-message {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
+        .btn-no-submit {
+            background-color: #e74c3c;
         }
-
-        /* Button styles */
-        .button-container {
+        .checkbox {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
             margin-top: 10px;
         }
-
-        button, input[type="submit"] {
-            flex: 1;
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 0; /* Adjust padding */
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 14px;
-            margin: 0 5px; /* Adjust margin for spacing */
-            width: 100px; /* Fixed width for buttons */
+        .checkbox input {
+            margin-right: 5px;
         }
-
-        /* Green background color for clicked Back button */
-        .clicked {
-            background-color: green !important;
+        .error-label {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
         }
-
-        /* Red color for Clear button on hover */
-        button:hover {
-            background-color: red;
-        }
+        .btnSubmit {}
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Insert Book details</h2>
-        <form id="book-form" action="processar_dados.php" method="POST" enctype="multipart/form-data">
+    <form id="form1" runat="server">
+        <div class="container">
+            <h2>Staff Registration</h2>
+            <p>
+                <asp:Label ID="Label1" runat="server" Text="Staff ID:"></asp:Label>
+            </p>
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
+                &nbsp;<asp:TextBox ID="txtStaffId" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
-                <label for="genre">Genre</label>
-                <input type="text" id="genre" name="genre" required>
+                <label for="txtStaffName">
+                <asp:Label ID="Label2" runat="server" Text="Staff Name:"></asp:Label>
+                </label>&nbsp;<asp:TextBox ID="txtStaffName" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
-                <label for="book_name">Book Name</label>
-                <input type="text" id="book_name" name="book_name" required>
+                <label for="txtStaffName">
+                <asp:Label ID="Label3" runat="server" Text="Staff Address:"></asp:Label>
+                </label>&nbsp;<asp:TextBox ID="txtStaffAddress" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" id="author" name="author" required>
+                <label for="txtStaffName">
+                <asp:Label ID="Label4" runat="server" Text="Staff Email:"></asp:Label>
+                </label>&nbsp;<asp:TextBox ID="txtStaffEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
-                <label for="datetime">Data/Time</label>
-                <input type="datetime-local" id="datetime" name="datetime" required>
+                <label for="txtStaffName">
+                <asp:Label ID="Label5" runat="server" Text="Staff Phone Number:"></asp:Label>
+                </label>&nbsp;<asp:TextBox ID="txtStaffPhoneNumber" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" id="image" name="image" required>
+                <label for="txtStaffName">
+                <asp:Label ID="Label6" runat="server" Text="Staff Position:"></asp:Label>
+                </label>
+&nbsp;<asp:TextBox ID="txtStaffPosition" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
-            <div class="button-container"> <!-- Flex container for buttons -->
-                <!-- Buttons for clear, back, and submit -->
-                <button id="clearButton" onclick="clearForm()">Clear</button>
-                <button id="backButton" onclick="goBack()">Back</button>
-                <input type="submit" value="Submit">
+            <div class="checkbox">
+                <asp:CheckBox ID="chkAgree" runat="server" />
+                <label for="chkAgree">
+                I agree to the terms and conditions</label></div>
+            <div class="btn-group">
+                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-clear" OnClick="btnClear_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btnSubmit" OnClick="btnSubmit_Click" BackColor="#33CC33" Height="34px" Width="92px" />
             </div>
-            
-            <div id="error-message" class="error-message" style="display: none;"></div>
-        </form>
-    </div>
-
-    <script>
-        function clearForm() {
-            document.getElementById("book-form").reset();
-        }
-
-        function goBack() {
-            document.getElementById("backButton").classList.add("clicked");
-            window.history.back();
-        }
-    </script>
+            <asp:Label ID="lblError" runat="server" CssClass="error-label"></asp:Label>
+        </div>
+    </form>
 </body>
 </html>
