@@ -211,7 +211,7 @@ namespace Testing3
             //Creat boolean variable to record if the data is ok(assumi it id)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 GenreId = 21;
+            Int32 GenreId = 24;
             //invoke the method
             Found = Genre.Find(GenreId);
             //check the addess
