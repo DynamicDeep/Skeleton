@@ -115,52 +115,35 @@ namespace ClassLibrary
             }
         }
 
-
         public bool Find(int bookId)
         {
-            // Create an instance of the data connection
+            // Crie uma instância da conexão de dados
             clsDataConnection DB = new clsDataConnection();
 
-            // Add the parameter for the book ID to search for
+            // Adicione o parâmetro para a busca
             DB.AddParameter("@BookId", bookId);
 
-            // Execute the stored procedure
+            // Execute o procedimento armazenado
             DB.Execute("sproc_tblbook_FilterByBookId");
 
-            // Check if a record was found
+            // Se um registro for encontrado (deve haver um ou nenhum)
             if (DB.Count == 1)
             {
-                try
-                {
-                    mBookId = Convert.ToInt32(DB.DataTable.Rows[0]["BookId"]);
-                    mTitle = Convert.ToString(DB.DataTable.Rows[0]["Title"]);
-                    mAuthor = Convert.ToString(DB.DataTable.Rows[0]["Author"]);
-                    mPublicationYear = Convert.ToDateTime(DB.DataTable.Rows[0]["PublicationYear"]);
-
-                    string priceStr = DB.DataTable.Rows[0]["Price"].ToString();
-                    if (decimal.TryParse(priceStr, out decimal price))
-                    {
-                        mPrice = price;
-                    }
-                    else
-                    {
-                        mPrice = null; // or set to a default value
-                    }
-
-                    mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
-                    mImagePath = Convert.ToString(DB.DataTable.Rows[0]["ImagePath"]);
-                    mBookManagemente = Convert.ToString(DB.DataTable.Rows[0]["BookManagement"]);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error in Find method: {ex.Message}");
-                    return false;
-                }
-
+                // Copie os dados do banco de dados para as propriedades da classe
+                BookId = Convert.ToInt32(DB.DataTable.Rows[0]["BookId"]);
+                Title = Convert.ToString(DB.DataTable.Rows[0]["Title"]);
+                Author = Convert.ToString(DB.DataTable.Rows[0]["Author"]);
+                PublicationYear = Convert.ToDateTime(DB.DataTable.Rows[0]["PublicationYear"]);
+                Description = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                Price = Convert.ToDecimal(DB.DataTable.Rows[0]["Price"]);
+                BookManagement = Convert.ToString(DB.DataTable.Rows[0]["BookManagement"]);
+                ImagePath = Convert.ToString(DB.DataTable.Rows[0]["ImagePath"]);
+                // Retorne true indicando que tudo funcionou corretamente
                 return true;
             }
             else
             {
+                // Se nenhum registro foi encontrado
                 return false;
             }
         }

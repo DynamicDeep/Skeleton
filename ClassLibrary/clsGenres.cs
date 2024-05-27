@@ -7,37 +7,22 @@ namespace ClassLibrary
         private int mGenreId;
         public int GenreId
         {
-            get
-            { return mGenreId; }
-
-            set
-            {
-                mGenreId = value;
-            }
+            get { return mGenreId; }
+            set { mGenreId = value; }
         }
+
         private string mBookGenre;
         public string BookGenre
         {
-            get
-            {
-                return mBookGenre;
-            }
-            set
-            {
-                mBookGenre = value;
-            }
+            get { return mBookGenre; }
+            set { mBookGenre = value; }
         }
+
         private int mBookId;
         public int BookId
         {
-            get
-            {
-                return mBookId;
-            }
-            set
-            {
-                mBookId = value;
-            }
+            get { return mBookId; }
+            set { mBookId = value; }
         }
 
         public bool Find(int genreId)

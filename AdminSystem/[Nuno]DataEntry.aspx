@@ -123,6 +123,14 @@
     <form id="form1" runat="server">
         <div class="form-container">
             <h2>Insert Book details</h2>
+                      
+            
+              <div class="form-group">
+                <label for="bookId">ID</label>
+                <asp:TextBox ID="bookId" runat="server"></asp:TextBox>
+            </div>
+                       
+            
             <div class="form-group">
                 <label for="title">Title</label>
                 <asp:TextBox ID="title" runat="server" ></asp:TextBox>
@@ -173,9 +181,13 @@
                 <asp:Button ID="backButton" runat="server" Text="Back" OnClick="backButton_Click" />
                 <asp:Button ID="FindButton" runat="server" Text="Find" OnClick="FindButton_Click" />
                 <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
+            
+            
             </div>
             
-            <div id="error-message" class="error-message" style="display: none;"></div>
+          <div class="form-group">
+                <asp:Label ID="errorMessageLabel" runat="server" CssClass="error-message"></asp:Label>
+            </div>
         </div>
     </form>
 
