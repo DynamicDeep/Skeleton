@@ -106,5 +106,60 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(int bookId, int quantity, string dateAdded, int supplierId)
+        {
+            // Create a String variable to store the error
+            string Error = "";
+
+            // Validate BookId
+            if (bookId <= 0)
+            {
+                Error += "The BookId may not be blank or zero: ";
+            }
+            if (bookId > 10)
+            {
+                Error += "The BookId must be less than or equal to 10: ";
+            }
+
+            // Validate Quantity
+            if (quantity < 1)
+            {
+                Error += "The Quantity must be greater than zero: ";
+            }
+            if (quantity > 100) // Assuming 100 is the maximum valid quantity
+            {
+                Error += "The Quantity must be less than or equal to 100: ";
+            }
+
+            // Validate DateAdded
+            DateTime DateTemp;
+            try
+            {
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error += "The date cannot be in the past: ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error += "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                Error += "The date was not a valid date: ";
+            }
+
+            // Validate SupplierId
+            if (supplierId <= 0)
+            {
+                Error += "The SupplierId must be greater than zero: ";
+            }
+
+            // Return any error messages
+            return Error;
+        }
+
     }
 }
