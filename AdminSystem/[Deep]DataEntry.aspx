@@ -125,6 +125,8 @@
 
                     <asp:Button ID="ButtonOrder" runat="server" Text="Order" CssClass="Order-btn" OnClick="ButtonOrder_Click" />
                     <asp:Button ID="ButtonFind" runat="server" Text="Find" CssClass="Find-btn" OnClick="ButtonFind_Click" />
+
+                    <asp:Label class="label" ID="LabelError" runat="server"></asp:Label>
                 </asp:Panel>
             </div>
         </main>
