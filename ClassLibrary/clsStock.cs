@@ -107,7 +107,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(int bookId, int quantity, string dateAdded, int supplierId)
+        public string Valid(int bookId, int quantity, string dateAdded)
         {
             // Create a String variable to store the error
             string Error = "";
@@ -151,11 +151,7 @@ namespace ClassLibrary
                 Error += "The date was not a valid date: ";
             }
 
-            // Validate SupplierId
-            if (supplierId <= 0)
-            {
-                Error += "The SupplierId must be greater than zero: ";
-            }
+           
 
             // Return any error messages
             return Error;

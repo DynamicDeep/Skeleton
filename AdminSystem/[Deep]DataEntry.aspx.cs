@@ -24,22 +24,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
         aStock.stockId = int.Parse(TextBoxStockId.Text);
 
         //capture the BookId 
-        aStock.BookId = int.Parse(TextBoxBookNo.Text);
+        int BookId = int.Parse(TextBoxBookNo.Text);
 
         //capture the Quantity
-        aStock.Quantity = int.Parse(TextBoxQuantity.Text);
+        int Quantity = int.Parse(TextBoxQuantity.Text);
 
         //capture the date
-        aStock.DateAdded = DateTime.Parse(TextBoxDateAdded.Text);
+        DateTime DateAdded = DateTime.Parse(TextBoxDateAdded.Text);
 
         //capture the supplier Id
         aStock.SupplierId = int.Parse(TextBoxSupplierID.Text);
 
-        //store the BookId in the session object
-        Session["aStock"] = aStock;
+        string Error = "";
+        //validate the data 
+        Error = aStock.Valid(BookId, Quantity, TextBoxDateAdded.Text);
+        if(Error == "")
+        {
+            aStock.BookId = BookId;
+            aStock.Quantity = Quantity;
+            aStock.DateAdded = DateAdded;
+            //store the BookId in the session object
+            Session["aStock"] = aStock;
+            //navigate to the view page 
+            Response.Redirect("[Deep]Viewer.aspx");
+        }
+        else
+        {
+            //display the error message 
+            LabelError.Text = Error;
+        }
 
-        //navigate to the view page 
-        Response.Redirect("[Deep]Viewer.aspx");
+       
     }
 
     protected void ButtonFind_Click(object sender, EventArgs e)
