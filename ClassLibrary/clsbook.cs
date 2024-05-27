@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -114,7 +116,7 @@ namespace ClassLibrary
                 mImagePath = value;
             }
         }
-
+        //______________________________________DATA BASE CONECTION______________________________________________________
         public bool Find(int bookId)
         {
             // Crie uma instância da conexão de dados
@@ -147,5 +149,111 @@ namespace ClassLibrary
                 return false;
             }
         }
+        //_____________________________________________________VALIDATION METHOD---------------------------------------------------------
+        public string Valid(string title, string author, string publicationYear, string price, string description, string imagePath)
+        {
+            string Error = "";
+
+            // Validate Title
+            if (string.IsNullOrEmpty(title))
+            {
+                Error += "The title cannot be empty. ";
+            }
+            else if (title.Length < 1)
+            {
+                Error += "The title cannot have less than 1 character. ";
+            }
+            else if (title.Length > 50)
+            {
+                Error += "The title cannot have more than 50 characters. ";
+            }
+
+
+            // Validate Author
+            if (string.IsNullOrEmpty(author))
+            {
+                Error += "The author cannot be empty. ";
+            }
+            else if (author.Length < 1)
+            {
+                Error += "The author cannot have less than 1 character. ";
+            }
+            else if (author.Length > 50)
+            {
+                Error += "The author cannot have more than 50 characters. ";
+            }
+
+
+
+            // Validate publicationYear
+            DateTime pubYearDate;
+            if (!DateTime.TryParse(publicationYear, out pubYearDate))
+            {
+                Error += "The publication year must be a valid date. ";
+            }
+            else if (pubYearDate.Year < 1950 || pubYearDate.Year > 2024)
+            {
+                Error += "The publication year must be between 1950 and 2024. ";
+            }
+
+
+            // Validate Price
+            if (string.IsNullOrEmpty(price))
+            {
+                Error += "Price cannot be empty; ";
+            }
+            else if (!decimal.TryParse(price, NumberStyles.Currency, new CultureInfo("en-GB"), out decimal parsedPrice))
+            {
+                Error += "Price must be a valid decimal number in GBP; ";
+            }
+            else if (parsedPrice <= 0)
+            {
+                Error += "Price must be greater than zero; ";
+            }
+            else if (parsedPrice > 10000) // Assuming 10,000 as an upper reasonable limit for the price
+            {
+                Error += "Price is too high; ";
+            }
+
+            //Validate description
+
+            // Validation for Description
+            if (string.IsNullOrEmpty(description))
+            {
+                Error += "Description cannot be null or empty; ";
+            }
+            else if (description.Length < 1 || description.Length > 500)
+            {
+                Error += "Description must be between 1 and 500 characters; ";
+            }
+
+
+
+
+
+
+            // Validate ImagePath
+            if (string.IsNullOrEmpty(imagePath))
+            {
+               Error += "Image path cannot be empty; ";
+            }
+            else
+            {
+                string extension = Path.GetExtension(imagePath).ToLower();
+                if (extension != ".jpg" && extension != ".jpeg" && extension != ".png" && extension != ".gif")
+                {
+                    Error += "Image path must be a valid image file (.jpg, .jpeg, .png, .gif); ";
+                }
+            }
+
+        
+
+
+
+
+            return Error;
+        }
+    
+    
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -53,5 +55,28 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string bookGenre)
+        {
+            string Error = "";
+
+            if (string.IsNullOrEmpty(bookGenre))
+            {
+                Error += "The genre cannot be empty. ";
+            }
+            else if (bookGenre.Length < 1)
+            {
+                Error += "The genre cannot have less than 1 character. ";
+            }
+            else if (bookGenre.Length > 50)
+            {
+                Error += "The genre cannot have more than 50 characters. ";
+            }
+
+
+            return Error;
+        }
+
+
     }
 }

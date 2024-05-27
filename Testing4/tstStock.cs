@@ -221,7 +221,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //Test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -238,7 +238,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 0; //this should be ok
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -253,7 +253,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 1; //this should be ok 
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreEqual(Error, "");
         }
@@ -268,7 +268,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 2; //this should be ok 
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreEqual(Error, "");
         }
@@ -283,7 +283,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 9; //this should be ok 
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreEqual(Error, "");
         }
@@ -298,7 +298,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 10; //this should be ok
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreEqual(Error, "");
         }
@@ -313,7 +313,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 5; //this should be ok
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreEqual(Error, "");
         }
@@ -328,7 +328,7 @@ namespace Testing4
             //create some test data to pass to the method 
             int BookId = 11; //this should ok
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -344,7 +344,7 @@ namespace Testing4
             int BookId = 500;
             // BookId = Convert.ToInt32(BookId.ToString().PadRight(500));
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -368,7 +368,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateAdded = TestDate.ToString();  
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -389,7 +389,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateAdded = TestDate.ToString();
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -408,7 +408,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateAdded = TestDate.ToString("dd-mm-yyyy");
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -429,7 +429,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateAdded = TestDate.ToString();
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -450,7 +450,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateAdded = TestDate.ToString();
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
             Assert.AreNotEqual(Error, "");
         }
@@ -465,7 +465,7 @@ namespace Testing4
             //set the DateAdded to a non date value
             string DateAdded = "this is not a date!";
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
         }
@@ -482,7 +482,7 @@ namespace Testing4
             //set the Quantity to a min Less One value
             int Quantity = 0;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
         }
@@ -497,7 +497,7 @@ namespace Testing4
             //set the Quantity to a min value
             int Quantity = 1;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -512,7 +512,7 @@ namespace Testing4
             //set the Quantity to a min + 1 value
             int Quantity = 2;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -527,7 +527,7 @@ namespace Testing4
             //set the Quantity to a max - 1 value
             int Quantity = 99;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -542,7 +542,7 @@ namespace Testing4
             //set the Quantity to a max value
             int Quantity = 100;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -557,7 +557,7 @@ namespace Testing4
             //set the Quantity to a max + 1 value
             int Quantity = 101;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
         }
@@ -572,7 +572,7 @@ namespace Testing4
             //set the Quantity to a mid value
             int Quantity = 50;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -587,7 +587,7 @@ namespace Testing4
             //set the Quantity to a extreme max value
             int Quantity = 500;
             //invoke the method 
-            Error = aStock.Valid(BookId, Quantity, DateAdded, SupplierId);
+            Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
         }
