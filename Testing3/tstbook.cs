@@ -1125,9 +1125,11 @@ namespace Testing3
         {
             clsGenres Genre = new clsGenres();
             string Error = "";
+
             string BookGenre = "The genre cannot be empty";
             Error = Genre.Valid(BookGenre);
-            Assert.AreEqual(Error, "The genre cannot be empty");
+            Assert.AreEqual(Error, "");
+
         }
 
         [TestMethod]
