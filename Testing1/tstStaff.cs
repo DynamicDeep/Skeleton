@@ -141,6 +141,26 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        public void TestStaffAddressFound()
+        {
+            //create am instance of the class we want to create 
+            clsStaff AStaff = new clsStaff();
+            //create a Boolean variable to store the results of the validation 
+            Boolean Found = false;
+            //create a Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 StaffId = 1;
+            //invoke the method 
+            Found = AStaff.Find(StaffId);
+            //check the Staff Address
+            if (AStaff.StaffEmail != "Westminister")
+            {
+                OK = false;
+            }
+            //test to see if the results is true
+            Assert.IsTrue(OK);
+        }
         public void TestStaffPhoneNumberFound()
         {
             //create am instance of the class we want to create 

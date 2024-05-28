@@ -118,4 +118,33 @@ public partial class _1_DataEntry : Page
         // If we reached here, all validations passed
         return true;
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        //create an instance for class
+        clsStaff AStaff = new clsStaff();
+        //create a variable to store a primary key
+        Int32 StaffId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        StaffId = Convert.ToInt32(txtStaffId.Text);
+        //find the record
+        Found = AStaff.Find(StaffId);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtStaffName.Text = AStaff.StaffName;
+            txtStaffAddress.Text = AStaff.StaffAddress;
+            txtStaffEmail.Text = AStaff.StaffEmail;
+            txtStaffPhoneNumber.Text = AStaff.StaffPhoneNumber.ToString();
+            txtStaffPosition.Text = AStaff.PositionId.ToString();
+        }
+    }
+
+    protected void chkAgree_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
 }
