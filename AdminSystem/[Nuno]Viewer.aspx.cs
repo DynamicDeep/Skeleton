@@ -27,17 +27,17 @@ namespace AdminSystem
 
                         // Create a list to bind to the Repeater
                         var books = new List<dynamic>
-                {
-                    new
-                    {
-                        Title = HttpUtility.HtmlEncode(book.Title),
-                        Author = HttpUtility.HtmlEncode(book.Author),
-                        Genre = HttpUtility.HtmlEncode(genre.BookGenre),
-                        Description = HttpUtility.HtmlEncode(book.Description),
-                        ImagePath = HttpUtility.HtmlEncode(imagePath),
-                        Price = formattedPrice
-                    }
-                };
+                        {
+                            new
+                            {
+                                Title = HttpUtility.HtmlEncode(book.Title),
+                                Author = HttpUtility.HtmlEncode(book.Author),
+                                Genre = HttpUtility.HtmlEncode(genre.BookGenre),
+                                Description = HttpUtility.HtmlEncode(book.Description),
+                                ImagePath = HttpUtility.HtmlEncode(imagePath),
+                                Price = formattedPrice
+                            }
+                        };
 
                         rptBooks.DataSource = books;
                         rptBooks.DataBind();
@@ -55,6 +55,5 @@ namespace AdminSystem
                 }
             }
         }
-
     }
 }

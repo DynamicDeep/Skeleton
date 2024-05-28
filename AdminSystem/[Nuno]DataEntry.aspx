@@ -186,7 +186,8 @@
             </div>
             
           <div class="form-group">
-                <asp:Label ID="errorMessageLabel" runat="server" CssClass="error-message"></asp:Label>
+               <asp:Label ID="lblError" runat="server" CssClass="error-message"></asp:Label>
+              <asp:Label ID="errorMessageLabel" runat="server" CssClass="error-message"></asp:Label>
             </div>
         </div>
     </form>
