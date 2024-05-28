@@ -13,6 +13,7 @@ namespace Testing1
             clsStaff AStaff = new clsStaff();
             Assert.IsNotNull(AStaff);
         }
+        [TestMethod]
         public void StaffIDOK()
         {
             // Create an instance class
@@ -22,6 +23,7 @@ namespace Testing1
             AStaff.StaffId = testData;
             Assert.AreEqual(AStaff.StaffId, testData);
         }
+        [TestMethod]
         public void StaffNameOK()
         {
             // Create an instance class
@@ -31,6 +33,7 @@ namespace Testing1
             AStaff.StaffName = testData;
             Assert.AreEqual(AStaff.StaffName, testData);
         }
+        [TestMethod]
         public void StaffAddressOK()
         {
             // Create an instance class
@@ -40,6 +43,7 @@ namespace Testing1
             AStaff.StaffAddress = testData;
             Assert.AreEqual(AStaff.StaffAddress, testData);
         }
+        [TestMethod]
         public void StaffEmailOK()
         {
             // Create an instance class
@@ -49,6 +53,7 @@ namespace Testing1
             AStaff.StaffEmail = testData;
             Assert.AreEqual(AStaff.StaffEmail, testData);
         }
+        [TestMethod]
         public void StaffPhoneNumberOK()
         {
             // Create an instance class
@@ -58,6 +63,7 @@ namespace Testing1
             AStaff.StaffPhoneNumber = testData;
             Assert.AreEqual(AStaff.StaffPhoneNumber, testData);
         }
+        [TestMethod]
         public void PositionIDOK()
         {
             // Create an instance class
@@ -68,6 +74,7 @@ namespace Testing1
             Assert.AreEqual(AStaff.PositionId, testData);
         }
         //-------------------------------------------------LAB 9---------------------------------------------------------------//
+        [TestMethod]
         public void FindMethodOK()
         {
             //create an instance of the class we want to create
@@ -81,6 +88,7 @@ namespace Testing1
             //check the whether the results is true
             Assert.IsTrue(Found);
         }
+        [TestMethod]
         public void TestStaffIdFound()
         {
             //create am instance of the class we want to create 
@@ -101,6 +109,7 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
         public void TestStaffNameFound()
         {
             //create am instance of the class we want to create 
@@ -121,6 +130,7 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
         public void TestStaffEmailFound()
         {
             //create am instance of the class we want to create 
@@ -141,6 +151,7 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
         public void TestStaffAddressFound()
         {
             //create am instance of the class we want to create 
@@ -161,6 +172,7 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
         public void TestStaffPhoneNumberFound()
         {
             //create am instance of the class we want to create 
@@ -181,6 +193,7 @@ namespace Testing1
             //test to see if the results is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
         public void TestStaffPositionFound()
         {
             //create am instance of the class we want to create 
