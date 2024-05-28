@@ -108,12 +108,13 @@
 &nbsp;<asp:TextBox ID="txtStaffPosition" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="checkbox">
-                <asp:CheckBox ID="chkAgree" runat="server" />
+                <asp:CheckBox ID="chkAgree" runat="server" OnCheckedChanged="chkAgree_CheckedChanged" />
                 <label for="chkAgree">
                 I agree to the terms and conditions</label></div>
             <div class="btn-group">
                 <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-clear" OnClick="btnClear_Click" />
                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btnSubmit" OnClick="btnSubmit_Click" BackColor="#33CC33" Height="34px" Width="92px" />
+                <asp:Button ID="Button1" runat="server" BackColor="#CC6699" Height="36px" OnClick="Button1_Click" Text="Find" Width="77px" />
             </div>
             <asp:Label ID="lblError" runat="server" CssClass="error-label"></asp:Label>
         </div>

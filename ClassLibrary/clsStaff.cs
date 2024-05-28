@@ -106,21 +106,31 @@ namespace ClassLibrary
         }
 
         // Find method
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            // Hardcoding the test data for demonstration purposes
-            if (staffId == 1)
+            //create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the stock id to search for 
+            DB.AddParameter("@StaffId", StaffId);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
             {
-                this.StaffId = 1;
-                this.StaffName = "Will";
-                this.StaffEmail = "will@123.com";
-                this.StaffPhoneNumber = 123456;
-                this.PositionId = 1;
+                //copy the data from the database to the private data memebers 
+                _StaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                _StaffName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
+                _StaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                _StaffAddress = Convert.ToString(DB.DataTable.Rows[0]["StaffAddress"]);
+                _StaffPhoneNumber = Convert.ToInt32(DB.DataTable.Rows[0]["StaffPhoneNumber"]);
+                _PositionId = Convert.ToInt32(DB.DataTable.Rows[0]["PositionId"]);
+                //returns that everything worked OK 
                 return true;
             }
+            //if no record was found 
             else
             {
-                // If staffId does not match, return false
+                //return false indicating there is a problem 
                 return false;
             }
         }
