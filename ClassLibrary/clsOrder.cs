@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics.SymbolStore;
+using System.IO;
+using System.Net;
 
 namespace ClassLibrary
 {
@@ -19,7 +21,7 @@ namespace ClassLibrary
         {
             get { return mCustomerId; }
             set { mCustomerId = value; }
-        
+
         }
         private double mTotalCost;
         public double TotalCost
@@ -27,7 +29,7 @@ namespace ClassLibrary
             get { return mTotalCost; }
             set { mTotalCost = value; }
         }
-       
+
         private string mAddress;
         public string Address
         {
@@ -70,6 +72,68 @@ namespace ClassLibrary
 
             }
         }
-    }
 
+        
+
+        public string Valid(string customerId, string totalCost, string address, string deliveryDate)
+        {
+            string Error = "";
+
+            DateTime DateTemp;
+
+            if (Convert.ToInt32(customerId) == 0)
+            {
+                Error = Error + "The customer no may not be zero : ";
+            }
+            if (Convert.ToInt32(customerId) > 999999)
+            {
+                //record the error
+                Error = Error + "The customerID must be less than 1000000 : ";
+            }
+
+            DateTemp = Convert.ToDateTime(deliveryDate);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The data cannot be in the past : ";
+            }
+
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
+
+            return Error;
+        }
+    }
 }
+           
+
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+    
+      
+
+
+      
+       
