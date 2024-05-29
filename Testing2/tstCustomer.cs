@@ -7,6 +7,8 @@ namespace Testing2
     [TestClass]
     public class tstCustomer
     {
+        private object ACustomer;
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -20,11 +22,9 @@ namespace Testing2
         public void CustomerIDOK()
         {
             //Create an instance of the class we want to create 
-            clsCustomer aCustomer = new clsCustomer();
+            clsCustomer aCustomer = new clsCustomer(1);
             //Create some test data to assign to the property
             int testData = 1;
-            //Assign the data to the property
-            aCustomer.CustomerID = testData;
             //test to see that the two values are the same
             Assert.AreEqual(aCustomer.CustomerID, testData);
         }
@@ -87,10 +87,10 @@ namespace Testing2
             DateTime testData = DateTime.Now;
 
             // Assign the data to the property
-            aCustomer.DateOfBirth = testData;
+            aCustomer.CustomerDateOfBirth = testData;
 
             // Test to see if the two values are the same
-            Assert.AreEqual(aCustomer.DateOfBirth, testData);
+            Assert.AreEqual(aCustomer.CustomerDateOfBirth, testData);
         }
         [TestMethod]
         public void GenderPropertyOk()
@@ -107,83 +107,95 @@ namespace Testing2
             // Test to see if the two values are the same
             Assert.AreEqual(aCustomer.Gender, testData);
         }
-        [TestMethod]
-        public void InteractionIdPropertyOk()
+    }
+
+
+    //****************************************FIND METOD***************************************************************************
+
+
+    namespace Testing2
+    {
+        [TestClass]
+        public class tstCustomer
         {
-            // Create an instance of the class we want to test
-            clsCustomer aCustomer = new clsCustomer();
+            private clsCustomer _customer;
+            private string booltestGender;
 
-            // Create some test data to assign to the property
-            int testData = 123; // For example, an interaction ID
+            public object Gender { get; private set; }
 
-            // Assign the data to the property
-            aCustomer.InteractionId = testData;
+            [TestInitialize]
+            public void Setup()
+            {
+                _customer = new clsCustomer(21);
+            }
 
-            // Test to see if the two values are the same
-            Assert.AreEqual(aCustomer.InteractionId, testData);
+            [TestMethod]
+            public void InstanceOK()
+            {
+                Assert.IsNotNull(_customer);
+            }
 
-        }
-        [TestMethod]
-        public void TimestampPropertyOk()
-        {
-            // Create an instance of the class we want to test
-            clsCustomerInteraction interaction = new clsCustomerInteraction();
+            [TestMethod]
+            public void CustomerIdPropertyOK()
+            {
+                Assert.AreEqual(21, _customer.CustomerID);
+            }
 
-            // Get the current date and time
-            DateTime currentTime = DateTime.Now;
+            [TestMethod]
+            public void CustomerNamePropertyOK()
+            {
+                string testName = "John Doe";
+                _customer.CustomerName = testName;
+                Assert.AreEqual(testName, _customer.CustomerName);
+            }
 
-            // Assign the current date and time to the Timestamp property
-            interaction.Timestamp = currentTime;
+            [TestMethod]
+            public void EmailAddressPropertyOK()
+            {
+                string testEmail = "john.doe@example.com";
+                _customer.CustomerEmail = testEmail;
+                Assert.AreEqual(testEmail, _customer.CustomerEmail);
+            }
 
-            // Test to see if the assigned timestamp is within an acceptable range (e.g., within a few seconds of the current time)
-            Assert.IsTrue((currentTime - interaction.Timestamp).TotalSeconds < 5); // Adjust the range as needed
-        }
-        [TestMethod]
-        public void ActivityTypePropertyOk()
-        {
-            // Create an instance of the class we want to test
-            clsCustomerInteraction interaction = new clsCustomerInteraction();
+            [TestMethod]
+            public void PhoneNumberPropertyOK()
+            {
+                string testPhone = "1234567890";
+                _customer.CustomerPhone = testPhone;
+                Assert.AreEqual(testPhone, _customer.CustomerPhone);
+            }
 
-            // Create some test data for the activity type
-            string testActivityType = "Login"; // Example activity type
+            [TestMethod]
+            public void DateOfBirthPropertyOK()
+            {
+                DateTime testDate = new DateTime(1980, 1, 1);
+                _customer.CustomerDateOfBirth = testDate;
+                Assert.AreEqual(testDate, _customer.CustomerDateOfBirth);
+            }
+            [TestMethod]
+            public void GenderPropertyOK()
+            {
+                String testGender = "Male";
+                _customer.CustomerGender = testGender;
+                Assert.AreEqual(testGender, _customer.CustomerGender);
+            }
 
-            // Assign the test activity type to the ActivityType property
-            interaction.ActivityType = testActivityType;
 
-            // Test to see if the assigned activity type matches the test data
-            Assert.AreEqual(interaction.ActivityType, testActivityType);
-        }
-        [TestMethod]
-        public void DetailsPropertyOk()
-        {
-            // Create an instance of the class we want to test
-            clsCustomerInteraction interaction = new clsCustomerInteraction();
+            [TestMethod]
+            public void RegistrationDatePropertyOK()
+            {
+                DateTime testDate = DateTime.Now.Date;
+                _customer.DateOfSubscription = testDate;
+                Assert.AreEqual(testDate, _customer.DateOfSubscription);
+            }
 
-            // Create some test data for the details
-            string testDetails = "User logged in"; // Example details
-
-            // Assign the test details to the Details property
-            interaction.Details = testDetails;
-
-            // Test to see if the assigned details match the test data
-            Assert.AreEqual(interaction.Details, testDetails);
-        }
-        [TestMethod]
-        public void SubscriptionIdPropertyOk()
-        {
-            // Create an instance of the class we want to test
-            SubscriptionIdProperty subscription = new SubscriptionIdProperty();
-            // Create some test data to assign to the property
-            int testSubscriptionId = 123; // Example subscription ID
-
-            // Assign the test data to the SubscriptionId property
-            subscription.SubscriptionId = testSubscriptionId;
-
-            // Test to see if the assigned subscription ID matches the test data
-            Assert.AreEqual(subscription.SubscriptionId, testSubscriptionId);
+            [TestMethod]
+            public void FindMethodOK()
+            {
+                clsCustomer customer = new clsCustomer(21);
+                bool found = customer.Find(21);
+                Assert.IsTrue(found);
+            }
         }
     }
 }
-
-
-

@@ -31,7 +31,7 @@
 }
 
 .Hero-part{
-    height: 500px;
+    height: 550px;
     width: 80%;
     position: relative;
     left: 150px;
@@ -71,7 +71,7 @@
 }
 
 
-.Order-btn, .Update-btn {
+.Order-btn, .Find-btn {
     margin-top: 70px;
     margin-left: 30px;
     position: relative;
@@ -102,6 +102,10 @@
         <main>
             <div class="Hero-part">
                 <asp:Panel ID="Panel1" runat="server">
+                     <div class="input-box input">
+                           <asp:Label class="label" ID="LabelStockId" runat="server" Text="Stock ID:"></asp:Label>
+                           <asp:TextBox ID="TextBoxStockId" runat="server"></asp:TextBox>
+                    </div>
                     <div class="input-box input">
                         <asp:Label class="label" ID="LabelBookNo" runat="server" Text="Book Number:"></asp:Label>
                         <asp:TextBox ID="TextBoxBookNo" runat="server" placeholder="Enter Book Number here!"></asp:TextBox>
@@ -112,7 +116,7 @@
                     </div>
                     <div class="input-box input">
                         <asp:Label class="label" ID="LabelDateAdded" runat="server" Text="Date: "></asp:Label>
-                        <asp:TextBox ID="TextBoxDateAdded" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxDateAdded" runat="server" ></asp:TextBox>
                     </div>
                     <div class="input-box input">
                         <asp:Label class="label" ID="LabelSupplierID" runat="server" Text="Supplier ID: "></asp:Label>
@@ -120,7 +124,9 @@
                     </div>
 
                     <asp:Button ID="ButtonOrder" runat="server" Text="Order" CssClass="Order-btn" OnClick="ButtonOrder_Click" />
-                    <asp:Button ID="ButtonUpdate" runat="server" Text="Update" CssClass="Update-btn" OnClick="ButtonUpdate_Click" />
+                    <asp:Button ID="ButtonFind" runat="server" Text="Find" CssClass="Find-btn" OnClick="ButtonFind_Click" />
+
+                    <asp:Label class="label" ID="LabelError" runat="server"></asp:Label>
                 </asp:Panel>
             </div>
         </main>
