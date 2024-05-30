@@ -134,5 +134,74 @@ namespace ClassLibrary
                 return false;
             }
         }
+        //Validation Method
+        public string Valid(string PositionID, string StaffName, string StaffEmail, string StaffAddress, string StaffPhoneNumber)
+        {
+            // Create a String variable to store the error
+            string Error = "";
+
+            // Validation for PositionID
+            if (string.IsNullOrWhiteSpace(PositionID))
+            {
+                Error += "Position ID cannot be blank. ";
+            }
+
+            // Validation for StaffName
+            if (string.IsNullOrWhiteSpace(StaffName))
+            {
+                Error += "Staff Name cannot be blank. ";
+            }
+            else if (StaffName.Length < 2 || StaffName.Length > 50)
+            {
+                Error += "Staff Name must be between 2 and 50 characters. ";
+            }
+
+            // Validation for StaffEmail
+            if (string.IsNullOrWhiteSpace(StaffEmail))
+            {
+                Error += "Staff Email cannot be blank. ";
+            }
+            else if (!IsValidEmail(StaffEmail))
+            {
+                Error += "Staff Email is not in a valid format. ";
+            }
+
+            // Validation for StaffAddress
+            if (string.IsNullOrWhiteSpace(StaffAddress))
+            {
+                Error += "Staff Address cannot be blank. ";
+            }
+            else if (StaffAddress.Length > 100)
+            {
+                Error += "Staff Address must be less than 100 characters. ";
+            }
+
+            // Validation for StaffPhoneNumber
+            if (string.IsNullOrWhiteSpace(StaffPhoneNumber))
+            {
+                Error += "Staff Phone Number cannot be blank. ";
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(StaffPhoneNumber, @"^\+?[1-9]\d{1,14}$"))
+            {
+                Error += "Staff Phone Number is not in a valid format. ";
+            }
+
+            // Return any error messages
+            return Error;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
