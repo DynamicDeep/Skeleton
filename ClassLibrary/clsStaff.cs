@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -135,15 +136,19 @@ namespace ClassLibrary
             }
         }
         //Validation Method
-        public string Valid(string PositionID, string StaffName, string StaffEmail, string StaffAddress, string StaffPhoneNumber)
+        public string Valid(int PositionID, string StaffName, string StaffEmail, string StaffAddress, string StaffPhoneNumber)
         {
             // Create a String variable to store the error
             string Error = "";
 
-            // Validation for PositionID
-            if (string.IsNullOrWhiteSpace(PositionID))
+            // Validate PositionID
+            if (PositionID <= 0)
             {
-                Error += "Position ID cannot be blank. ";
+                Error += "The PositionID may not be blank or zero: ";
+            }
+            if (PositionID > 10)
+            {
+                Error += "The PositionID must be less than or equal to 10: ";
             }
 
             // Validation for StaffName
