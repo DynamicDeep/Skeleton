@@ -25,34 +25,35 @@
 
         <br />
         <br />
-        <asp:Label ID="lblBook" runat="server" Text="CustomerId"></asp:Label>
+        <asp:Label ID="lblCustomerId" runat="server" Text="CustomerId"></asp:Label>
         <br />
         <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 128px; top: 166px; position: absolute" height="25px" width="128px"></asp:TextBox>
         <br />
         <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblPrice" runat="server" Text="DeliveryDate"></asp:Label>
+        <asp:Label ID="lblDeliveryDate" runat="server" Text="DeliveryDate"></asp:Label>
         <br />
 &nbsp;<br />
-        <asp:TextBox ID="txtAddress" runat="server" style="z-index: 1; left: 128px; top: 204px; position: absolute" height="25px" width="128px"></asp:TextBox>
+        <asp:TextBox ID="txtAddress" runat="server" style="z-index: 1; left: 128px; top: 204px; position: absolute; right: 1246px;" height="25px" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtDeliveryDate" runat="server" style="z-index: 1; left: 129px; top: 242px; position: absolute" height="25px" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtTotalCost" runat="server" style="z-index: 1; left: 128px; top: 276px; position: absolute" height="25px" width="128px"></asp:TextBox>
-        <asp:Label ID="lblDateoforder" runat="server" Text="TotalCost"></asp:Label>
+        <asp:Label ID="lblTotalCost" runat="server" Text="TotalCost"></asp:Label>
         <br />
         <br />
         <br />
         &nbsp;&nbsp;
         <asp:CheckBox ID="lblOrdercomplete" runat="server" Text="Order Complete" />
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 142px; top: 338px; position: absolute; width: 46px" Text="lblError"></asp:Label>
         <br />
         <br />
         <br />
         <br />
-            <asp:Button ID="BtnOk" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 111px; top: 431px; position: absolute; height: 30px; bottom: 204px; width: 128px; right: 411px;" Text="OK" />
+            <asp:Button ID="BtnOk" runat="server" OnClick="BtnOK_Click" style="z-index: 1; left: 111px; top: 431px; position: absolute; height: 30px; bottom: 204px; width: 128px; right: 411px;" Text="OK" />
         <br />
         <asp:Button ID="BtnFind" runat="server" OnClick="BtnFind_Click" style="height: 26px" Text="Find" />
         <br />
-        <asp:Button ID="Btn2" runat="server" style="z-index: 1; left: 263px; top: 432px; position: absolute; height: 30px; width: 128px;" Text="Cancel"/>
+        <asp:Button ID="BtnCanel" runat="server" style="z-index: 1; left: 263px; top: 432px; position: absolute; height: 30px; width: 128px;" Text="Cancel"/>
         <p>
             &nbsp;</p>
     </form>
