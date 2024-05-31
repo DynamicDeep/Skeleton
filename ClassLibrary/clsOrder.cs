@@ -2,6 +2,7 @@
 using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Net;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -44,6 +45,10 @@ namespace ClassLibrary
             set { mDeliveryDate = value; }
         }
 
+        public int Orderid { get; set; }
+        public int Quantity { get; set; }
+        public DateTime DateAdded { get; set; }
+
         public bool Find(int OrderId)
         {
             //create an instace of the data connection
@@ -75,23 +80,12 @@ namespace ClassLibrary
 
         
 
-        public string Valid(string customerId, string totalCost, string address, string deliveryDate)
+        public string Valid(string CustomerId, string TotalCost, string Address, string DeliveryDate)
         {
             string Error = "";
-
             DateTime DateTemp;
 
-            if (Convert.ToInt32(customerId) == 0)
-            {
-                Error = Error + "The customer no may not be zero : ";
-            }
-            if (Convert.ToInt32(customerId) > 999999)
-            {
-                //record the error
-                Error = Error + "The customerID must be less than 1000000 : ";
-            }
-
-            DateTemp = Convert.ToDateTime(deliveryDate);
+            DateTemp = Convert.ToDateTime(DeliveryDate);
             if (DateTemp < DateTime.Now.Date)
             {
                 Error = Error + "The data cannot be in the past : ";
@@ -104,6 +98,7 @@ namespace ClassLibrary
 
             return Error;
         }
+
     }
 }
            
