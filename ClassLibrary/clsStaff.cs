@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClassLibrary
@@ -111,14 +112,14 @@ namespace ClassLibrary
         {
             //create an instance of the data connection 
             clsDataConnection DB = new clsDataConnection();
-            //add the parameter for the stock id to search for 
+            //add the parameter for the staff id to search for 
             DB.AddParameter("@StaffId", StaffId);
             //execute the stored procedure 
             DB.Execute("sproc_tblStaff_FilterByStaffId");
             //if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
-                //copy the data from the database to the private data memebers 
+                //copy the data from the database to the private data members 
                 _StaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
                 _StaffName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
                 _StaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
@@ -144,11 +145,11 @@ namespace ClassLibrary
             // Validate PositionID
             if (PositionID <= 0)
             {
-                Error += "The PositionID may not be blank or zero: ";
+                Error += "The PositionID may not be blank or zero. ";
             }
             if (PositionID > 10)
             {
-                Error += "The PositionID must be less than or equal to 10: ";
+                Error += "The PositionID must be less than or equal to 10. ";
             }
 
             // Validation for StaffName
@@ -186,9 +187,9 @@ namespace ClassLibrary
             {
                 Error += "Staff Phone Number cannot be blank. ";
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(StaffPhoneNumber, @"^\+?[1-9]\d{1,14}$"))
+            else if (!Regex.IsMatch(StaffPhoneNumber, @"^\d{6}$"))
             {
-                Error += "Staff Phone Number is not in a valid format. ";
+                Error += "Staff Phone Number must contain exactly six digits. ";
             }
 
             // Return any error messages
