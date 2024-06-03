@@ -6,10 +6,10 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
+<body id="lstOrderList" style="height: 601px; width: 653px">
+    <p>
+        OrderId</p>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
