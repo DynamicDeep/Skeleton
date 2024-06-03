@@ -48,6 +48,7 @@ namespace ClassLibrary
         public int Orderid { get; set; }
         public int Quantity { get; set; }
         public DateTime DateAdded { get; set; }
+        public bool Active { get; set; }
 
         public bool Find(int OrderId)
         {
