@@ -43,10 +43,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStock.BookId = BookId;
             aStock.Quantity = Quantity;
             aStock.DateAdded = DateAdded;
-            //store the BookId in the session object
-            Session["aStock"] = aStock;
+            //create a new instance of the address collection 
+            clsStockCollection StockList = new clsStockCollection();
+            // set the ThisAddress proprty
+            StockList.ThisStock = aStock;
+            //add the new record 
+            StockList.Add();
             //navigate to the view page 
-            Response.Redirect("[Deep]Viewer.aspx");
+            Response.Redirect("[Deep]List.aspx");
         }
         else
         {
