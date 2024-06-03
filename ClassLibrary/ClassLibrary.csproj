@@ -46,10 +46,12 @@
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsGenres.cs" />
     <Compile Include="clsOrder.cs" />
+    <Compile Include="clsOrderCollection.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="clsStock.cs" />
     <Compile Include="clsStockCollection.cs" />
     <Compile Include="clsSupplier.cs" />
+    <Compile Include="MOrderList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
