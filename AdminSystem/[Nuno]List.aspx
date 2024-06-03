@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="[Nuno]List.aspx.cs" Inherits="_1_List" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,19 +33,16 @@
             <tr>
                 <th>Title</th>
                 <th>Genre</th>
-                <th>Book Name</th>
-                <th>Data/Time</th>
+                <th>Publication Year</th>
                 <th>Description</th>
+                <th>Price</th>
                 <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody id="bookList">
-            <!-- Aqui os dados dos livros serão preenchidos dinamicamente -->
+            <asp:Literal ID="litBookList" runat="server"></asp:Literal>
         </tbody>
     </table>
-    <script>
-        // Aqui você vai adicionar JavaScript para recuperar os dados dos livros e preencher a tabela
-    </script>
 </body>
 </html>

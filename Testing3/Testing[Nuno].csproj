@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="tstbook.cs" />
+    <Compile Include="tstBookCollections.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
