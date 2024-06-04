@@ -117,7 +117,7 @@ namespace ClassLibrary
             {
                 Error += "The BookId may not be blank or zero: ";
             }
-            if (bookId > 10)
+            if (bookId > 1000001)
             {
                 Error += "The BookId must be less than or equal to 10: ";
             }
