@@ -39,6 +39,8 @@ namespace ClassLibrary
         }
 
         private DateTime mDeliveryDate;
+        internal int AddOrderId;
+
         public DateTime DeliveryDate
         {
             get { return mDeliveryDate; }
