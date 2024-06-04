@@ -8,13 +8,17 @@ namespace ClassLibrary
 {
     public class clsOrderCollection
     {
+        //public property for thisOrder
 
-        
         //private data member for the list
         List<clsOrder> MOrderList = new List<clsOrder>();
 
+        //private member data for thisOrder
+        clsOrder MThisOrder = new clsOrder();
+
         //public property for the address list
         public List<clsOrder> OrderCollectionOrderList
+
         {
             get
             {
@@ -31,6 +35,7 @@ namespace ClassLibrary
         }
         //public propery for count
         public int Count
+
         {
             get
             {
@@ -40,7 +45,7 @@ namespace ClassLibrary
             }
             set
             {
-                
+
                 //we shall worry about this later
             }
         }
@@ -59,7 +64,7 @@ namespace ClassLibrary
             //onject for data connect
             clsDataConnection DB = new clsDataConnection();
             //excute the stored procedure9
-            DB.Execute("sproc_tblOrders_selecAll");
+            DB.Execute("sproc_tblOrders_selectAll");
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process
@@ -82,9 +87,33 @@ namespace ClassLibrary
             }
         }
 
-        
+        public int Add()
+        {
+            //Adds a record to the database based on the values of mThisAddress
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the paparmeters for the stored procedure
+            DB.AddParameter("clsCustomer", MThisOrder.CustomerId);
+            DB.AddParameter("TotalCost", MThisOrder.TotalCost);
+            DB.AddParameter("Address", MThisOrder.Address);
+            DB.AddParameter("DeliveryDate", MThisOrder.DeliveryDate);
 
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblOrders_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of This Order
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", MThisOrder.CustomerId);
+            DB.AddParameter("TotalCost", MThisOrder.TotalCost);
+            DB.AddParameter("Address", MThisOrder.Address);
+            DB.AddParameter("DeliveryDate", MThisOrder.DeliveryDate);
+            //execute the stored produre
+            DB.Execute("sproc_TblOrder_Update");
+        }
     }
-    
-            
-    }
+}
+        
