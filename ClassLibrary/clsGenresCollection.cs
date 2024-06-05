@@ -6,7 +6,7 @@ namespace ClassLibrary
     public class clsGenresCollection
     {
         List<clsGenres> mGenreList = new List<clsGenres>();
-
+        clsGenres mThisGenre = new clsGenres();
         // Constructor of the class
         public clsGenresCollection()
         {
@@ -41,6 +41,29 @@ namespace ClassLibrary
             }
         }
 
+        public int Add()
+        {
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // Set the parameters for the stored procedure
+            DB.AddParameter("@BookGenre", mThisGenre.BookGenre);
+            DB.AddParameter("@BookId", mThisGenre.BookId);
+            // Execute the query returning the primary key value
+            return DB.Execute("sproc_Genre_Insert");
+        }
+
+        public void Update()
+        {
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // Set the parameters for the stored procedure
+            DB.AddParameter("@GenreId", mThisGenre.GenreId);
+            DB.AddParameter("@BookGenre", mThisGenre.BookGenre);
+            DB.AddParameter("@BookId", mThisGenre.BookId);
+            // Execute the stored procedure
+            DB.Execute("sproc_Genre_Update");
+        }
+
         public List<clsGenres> GenreList
         {
             get
@@ -62,6 +85,18 @@ namespace ClassLibrary
             // Removendo o setter para garantir que a propriedade seja somente leitura
         }
 
-        public clsGenres ThisGenre { get; set; }
+        public clsGenres ThisGenre 
+        { 
+            get
+            {
+                return mThisGenre;
+            }
+
+            set
+            {
+                mThisGenre = value;  
+            }
+
+        }
     }
 }

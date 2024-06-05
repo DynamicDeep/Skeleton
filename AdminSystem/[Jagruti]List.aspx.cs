@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,6 +7,12 @@ using ClassLibrary;
 public partial class _1_List : System.Web.UI.Page
 {
     protected ListBox lstOrderList; // Assuming lstOrderList is a ListBox
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // if this is the first time the page is displayed
+        if (!IsPostBack)
+        {
     Int32 OrderId;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -22,11 +28,11 @@ public partial class _1_List : System.Web.UI.Page
                 //display the current data for the record
                 DisplayOrder();
             }
+
             // update the list box
             DisplayOrder();
         }
     }
-
 
     void DisplayOrder()
     {
@@ -53,8 +59,11 @@ public partial class _1_List : System.Web.UI.Page
         Session["OrderId"] = -1;
         //redirect to the data entry page
         Response.Redirect("[Jagruti]DataEntry.aspx");
-
+        // bind the data to the list
+        lstOrderList.DataBind();
     }
+}
+
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         //variable to store the primary key value of the record to be edited
@@ -73,17 +82,4 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
-
-
-
-    
 }
-
-
-
-
-
-
-
-
-
