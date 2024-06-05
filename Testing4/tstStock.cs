@@ -97,7 +97,7 @@ namespace Testing4
             //invoke the method 
             Found = aStock.Find(StockId);
             //test to see if the results is true
-            Assert.IsTrue( Found );
+            Assert.IsTrue(Found);
         }
 
         [TestMethod]
@@ -214,7 +214,7 @@ namespace Testing4
 
         //-------------------------------------------------LAB 10---------------------------------------------------------------//
 
-    public void ValidMethodOK()
+        public void ValidMethodOK()
         {
             //create an instance of the class we want to create 
             clsStock aStock = new clsStock();
@@ -281,7 +281,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method 
-            int BookId = 9; //this should be ok 
+            int BookId = 1000000; //this should be ok 
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
@@ -296,7 +296,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method 
-            int BookId = 10; //this should be ok
+            int BookId = 1000001; //this should be ok
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
@@ -311,7 +311,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method 
-            int BookId = 5; //this should be ok
+            int BookId = 500000; //this should be ok
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
@@ -326,7 +326,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method 
-            int BookId = 11; //this should ok
+            int BookId = 1000002; //this should ok
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
@@ -341,7 +341,7 @@ namespace Testing4
             //string variable to store any error message 
             String Error = "";
             //create some test data to pass to the method 
-            int BookId = 500;
+            int BookId = 100000000;
             // BookId = Convert.ToInt32(BookId.ToString().PadRight(500));
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
@@ -366,7 +366,7 @@ namespace Testing4
             //change the date to whatever the date is less 100 years
             TestDate = TestDate.AddYears(-100);
             //convert the date variable to a string variable 
-            string DateAdded = TestDate.ToString();  
+            string DateAdded = TestDate.ToString();
             //invoke the method 
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is currect 
@@ -590,6 +590,55 @@ namespace Testing4
             Error = aStock.Valid(BookId, Quantity, DateAdded);
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsStockCollection AllStock = new clsStockCollection();
+            //create the item of test data 
+            clsStock TestItem = new clsStock();
+            //variable to store the primary key 
+            Int32 PrimaryKey = 0;
+            //set its properties 
+            TestItem.BookId = 9;
+            TestItem.Quantity = 1;
+            TestItem.DateAdded = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TestItem.SupplierId = 1;
+            //set thisStock to the test data
+            AllStock.ThisStock = TestItem;
+            //add the record 
+            PrimaryKey = AllStock.Add();
+            //set ThisAddress to the test data 
+            TestItem.stockId = PrimaryKey;
+            //find the record 
+            AllStock.ThisStock.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOk()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            int PrimaryKey = 0;
+            TestItem.BookId = 9;
+            TestItem.Quantity = 1;
+            TestItem.DateAdded = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TestItem.SupplierId = 1;
+            AllStock.ThisStock = TestItem;
+            PrimaryKey = AllStock.Add();
+            TestItem.stockId = PrimaryKey;
+            TestItem.BookId = 10;
+            TestItem.Quantity = 3;
+            TestItem.DateAdded = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TestItem.SupplierId = 3;
+            AllStock.ThisStock = TestItem;
+            AllStock.Update();
+            AllStock.ThisStock.Find(PrimaryKey);
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
         }
 
 

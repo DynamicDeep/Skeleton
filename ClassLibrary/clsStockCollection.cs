@@ -5,12 +5,10 @@ namespace ClassLibrary
 {
     public class clsStockCollection
     {
-
-
-
-
         //private data member for the list
         List<clsStock> _StockList = new List<clsStock>();
+        //private data member for the thisStock
+        clsStock _ThisStock =new clsStock();
         public List<clsStock> StockList
         {
             get
@@ -37,7 +35,17 @@ namespace ClassLibrary
 
             }
         }
-        public clsStock ThisStock { get; set; }
+        public clsStock ThisStock
+        {
+            get
+            {
+                return _ThisStock;
+            }
+            set
+            {
+                _ThisStock = value;
+            }
+        }
 
 
         public clsStockCollection()
@@ -69,6 +77,35 @@ namespace ClassLibrary
             }
         }
 
-        
+        public int Add()
+        {
+            //adds a record to the database based on the values of _thisStock
+            //connect to the database
+            clsDataConnection DB= new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@BookId", _ThisStock.BookId);
+            DB.AddParameter("@Quantity", _ThisStock.Quantity);
+            DB.AddParameter("@DateAdded", _ThisStock.DateAdded);
+            DB.AddParameter("@SupplierId", _ThisStock.SupplierId);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblStock_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisStock
+            //connect to the database
+            clsDataConnection DB= new clsDataConnection();
+            //set the parameters for the new stored procedure 
+            DB.AddParameter("@StockId", _ThisStock.stockId);
+            DB.AddParameter("@BookId", _ThisStock.BookId);
+            DB.AddParameter("@Quantity", _ThisStock.Quantity);
+            DB.AddParameter("@DateAdded", _ThisStock.DateAdded);
+            DB.AddParameter("@SupplierId", _ThisStock.SupplierId);
+
+            //execute the query returning the primary key value
+             DB.Execute("sproc_tblStock_Update");
+        }
     }
 }
