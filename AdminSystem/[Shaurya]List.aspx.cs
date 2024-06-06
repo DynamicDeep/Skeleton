@@ -91,4 +91,48 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        // Create an instance of the staff collection object 
+        clsStaffCollection AStaffCollection = new clsStaffCollection();
+
+        // Retrieve the value of staff name from the presentation layer
+        AStaffCollection.ReportByStaffName("");
+
+        //clear any existing filter
+        txtFilter.Text = "";
+
+        // Set the data source to the list of staff members in the collection
+        lstStaffList.DataSource = AStaffCollection.StaffList;
+
+        // Set the name of the primary key
+        lstStaffList.DataValueField = "StaffId";
+
+        // Set the name of the field to display 
+        lstStaffList.DataTextField = "StaffName";
+
+        // Bind the data to the list
+        lstStaffList.DataBind();
+    }
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the staff collection object 
+            clsStaffCollection AStaffCollection = new clsStaffCollection();
+
+            // Retrieve the value of staff name from the presentation layer
+            AStaffCollection.ReportByStaffName(txtFilter.Text);
+
+            // Set the data source to the list of staff members in the collection
+            lstStaffList.DataSource = AStaffCollection.StaffList;
+
+            // Set the name of the primary key
+            lstStaffList.DataValueField = "StaffId";
+
+            // Set the name of the field to display 
+            lstStaffList.DataTextField = "StaffName";
+
+            // Bind the data to the list
+            lstStaffList.DataBind();
+        }
 }

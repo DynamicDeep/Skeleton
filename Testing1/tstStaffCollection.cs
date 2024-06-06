@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Testing1
 {
@@ -34,7 +35,7 @@ namespace Testing1
             TestItem.StaffName = "Will";
             TestItem.StaffEmail = "will@123.com";
             TestItem.StaffAddress = "Westminister";
-            TestItem.StaffPhoneNumber = "123456";
+            TestItem.StaffPhoneNumber = 123456;
             TestItem.PositionID = 1;
             //add the item to the test list 
             TestList.Add(TestItem);
@@ -68,7 +69,7 @@ namespace Testing1
             TestStaff.StaffName = "Will";
             TestStaff.StaffEmail = "will@123.com";
             TestStaff.StaffAddress = "Westminister";
-            TestStaff.StaffPhoneNumber = "123456";
+            TestStaff.StaffPhoneNumber = 123456;
             TestStaff.PositionID = 1;
             //assign the data to the property
             AllStaff.ThisStaff = TestStaff;
@@ -91,7 +92,7 @@ namespace Testing1
             TestItem.StaffName = "Will";
             TestItem.StaffEmail = "will@123.com";
             TestItem.StaffAddress = "Westminister";
-            TestItem.StaffPhoneNumber = "123456";
+            TestItem.StaffPhoneNumber = 123456;
             TestItem.PositionID = 1;
             //add the item to the test list
             TestList.Add(TestItem);
@@ -131,7 +132,7 @@ namespace Testing1
             TestItem.StaffName = "Will";
             TestItem.StaffEmail = "will@123.com";
             TestItem.StaffAddress = "Westminister";
-            TestItem.StaffPhoneNumber = "123456";
+            TestItem.StaffPhoneNumber = 123456;
             TestItem.PositionID = 1;
 
             // Set ThisStaff to the test data
@@ -169,7 +170,7 @@ namespace Testing1
             TestItem.StaffName = "Will";
             TestItem.StaffEmail = "will@123.com";
             TestItem.StaffAddress = "Westminister";
-            TestItem.StaffPhoneNumber = "123456";
+            TestItem.StaffPhoneNumber = 123456;
             TestItem.PositionID = 1;
             // Assuming PositionID is a property of the Staff class
 
@@ -186,7 +187,7 @@ namespace Testing1
             TestItem.StaffName = "Willy";
             TestItem.StaffEmail = "willy@123.com";
             TestItem.StaffAddress = "Greenwich";
-            TestItem.StaffPhoneNumber = "012345";
+            TestItem.StaffPhoneNumber = 012345;
             TestItem.PositionID = 1;
             // Assuming PositionID is a property of the Staff class
 
@@ -220,7 +221,7 @@ namespace Testing1
             TestItem.StaffName = "Will";
             TestItem.StaffEmail = "will@123.com";
             TestItem.StaffAddress = "Westminister";
-            TestItem.StaffPhoneNumber = "123456";
+            TestItem.StaffPhoneNumber = 123456;
             TestItem.PositionID = 1;
 
             // Set ThisStaff to the test data
@@ -242,5 +243,71 @@ namespace Testing1
             // Test to see that the record was deleted (recordFound should be false)
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByStaffNameMethodOK()
+        {
+            // create an instance of the class containing unfiltered results
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            // create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            // apply a blank string (should return all records)
+            FilteredStaff.ReportByStaffName("");
+
+            // test to see that the two values are the same
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByStaffNameNoneFound()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            // Apply the name that does not exist
+            FilteredStaff.ReportByStaffName("Unknown");
+
+            // test to see taht there are no records
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByStaffNameFound()
+        {
+            // Create an instance for filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            // Variable to store the outcome
+            Boolean OK = true;
+
+            // Apply a name that does not exist
+            FilteredStaff.ReportByStaffName("Will");
+
+            // Check that the correct number of records are found
+            if (FilteredStaff.Count == 2)
+            {
+                //Check to see the first record
+                if (FilteredStaff.StaffList[0].StaffId !=1)
+                {
+                    OK = false;
+                }
+                //Check to see the second record
+                if (FilteredStaff.StaffList[1].StaffId != 13)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                // An error occurred if any records are found
+                OK = false;
+            }
+
+            // Check to see if the test was successful
+            Assert.IsTrue(OK);
+        }
+
     }
 }
