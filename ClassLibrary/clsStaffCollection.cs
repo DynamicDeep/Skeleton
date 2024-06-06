@@ -120,6 +120,18 @@ namespace ClassLibrary
             DB.Execute("sproc_TblStaff_Update");
         }
 
+        public void Delete()
+        {
+            // Deletes a record from the database based on the primary key value
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            // Set the parameter for the stored procedure
+            DB.AddParameter("@StaffId", _ThisStaff.StaffId);
+
+            // Execute the query to delete the record
+            DB.Execute("sproc_TblStaff_Delete");
+        }
     }
 
 }

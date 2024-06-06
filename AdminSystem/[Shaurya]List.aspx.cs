@@ -19,10 +19,10 @@ public partial class _1_List : System.Web.UI.Page
     void DisplayStaffMembers()
     {
         // Assuming clsStaffCollection is implemented and populated with data
-        clsStaffCollection StaffCollection = new clsStaffCollection();
+        clsStaffCollection Staffs = new clsStaffCollection();
 
         // Assuming lstStaffList is the ID of your ListBox control in the .aspx file
-        lstStaffList.DataSource = StaffCollection.StaffList;
+        lstStaffList.DataSource = Staffs.StaffList;
 
         // Assuming StaffId and StaffName are properties of clsStaff class
         lstStaffList.DataValueField = "StaffId";
@@ -65,6 +65,29 @@ public partial class _1_List : System.Web.UI.Page
         else // If no record has been selected
         {
             lblError.Text = "Please select a record from the list to edit.";
+        }
+    }
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        // variable to store the primary key value of the record to be deleted
+        Int32 StaffId;
+
+        // if a record has been selected from the list
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            // get the primary key value of the record to delete
+            StaffId = Convert.ToInt32(lstStaffList.SelectedValue);
+
+            // store the data in the session object
+            Session["StaffId"] = StaffId;
+
+            // redirect to the delete page
+            Response.Redirect("[Shaurya]ConfirmDelete.aspx");
+        }
+        else // if no record has been selected
+        {
+            // display an error message 
+            lblError.Text = "Please select a record from the list to delete";
         }
     }
 

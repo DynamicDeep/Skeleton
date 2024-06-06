@@ -153,6 +153,8 @@ namespace Testing1
             Assert.AreEqual(AllStaff.ThisStaff.StaffPhoneNumber, TestItem.StaffPhoneNumber);
             Assert.AreEqual(AllStaff.ThisStaff.PositionID, TestItem.PositionID);
         }
+
+        [TestMethod]
         public void UpdateMethodOK()
         {
             // Create an instance of the class we want to create
@@ -201,6 +203,44 @@ namespace Testing1
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
         }
 
+        [TestMethod]
+        public void DeleteMethodOk()
+        {
+            // Create an instance of the class we want to test
+            clsStaffCollection AllStaff = new clsStaffCollection();
 
+            // Create the item of the data
+            clsStaff TestItem = new clsStaff();
+
+            // Variable to store the primary key
+            Int32 PrimaryKey = 1;
+
+            // Set its properties
+            TestItem.StaffId = 1;
+            TestItem.StaffName = "Will";
+            TestItem.StaffEmail = "will@123.com";
+            TestItem.StaffAddress = "Westminister";
+            TestItem.StaffPhoneNumber = "123456";
+            TestItem.PositionID = 1;
+
+            // Set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+
+            // Add the record
+            PrimaryKey = AllStaff.Add();
+
+            // Find the record
+            TestItem.StaffId = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            // Delete the record
+            AllStaff.Delete();
+
+            // Try to find the record again
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+
+            // Test to see that the record was deleted (recordFound should be false)
+            Assert.IsFalse(Found);
+        }
     }
 }
