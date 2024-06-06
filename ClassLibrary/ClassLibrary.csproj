@@ -54,6 +54,8 @@
     <Compile Include="clsStock.cs" />
     <Compile Include="clsStockCollection.cs" />
     <Compile Include="clsSupplier.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="CustomerManager.cs" />
     <Compile Include="MOrderList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
