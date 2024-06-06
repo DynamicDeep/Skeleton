@@ -91,19 +91,19 @@ namespace ClassLibrary
             }
         }
         //private data member for the address
-        private Int32 _PositionId;
+        private Int32 _PositionID;
         //StaffPosition public property 
-        public Int32 PositionId
+        public Int32 PositionID
         {
             get
             {
                 //this line of code sends data out of the property 
-                return _PositionId;
+                return _PositionID;
             }
             set
             {
                 //this line of code allows data into property 
-                _PositionId = value;
+                _PositionID = value;
             }
         }
 
@@ -125,7 +125,7 @@ namespace ClassLibrary
                 _StaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
                 _StaffAddress = Convert.ToString(DB.DataTable.Rows[0]["StaffAddress"]);
                 _StaffPhoneNumber = Convert.ToInt32(DB.DataTable.Rows[0]["StaffPhoneNumber"]);
-                _PositionId = Convert.ToInt32(DB.DataTable.Rows[0]["PositionId"]);
+                _PositionID = Convert.ToInt32(DB.DataTable.Rows[0]["PositionID"]);
                 //returns that everything worked OK 
                 return true;
             }

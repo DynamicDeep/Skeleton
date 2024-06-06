@@ -80,8 +80,8 @@ namespace Testing1
             clsStaff AStaff = new clsStaff();
             // Create test data
             int testData = 1;
-            AStaff.PositionId = testData;
-            Assert.AreEqual(AStaff.PositionId, testData);
+            AStaff.PositionID = testData;
+            Assert.AreEqual(AStaff.PositionID, testData);
         }
         //-------------------------------------------------LAB 9---------------------------------------------------------------//
         [TestMethod]
@@ -214,7 +214,7 @@ namespace Testing1
             //invoke the method 
             Found = AStaff.Find(StaffId);
             //check the Staff Position
-            if (AStaff.PositionId != 1)
+            if (AStaff.PositionID != 1)
             {
                 OK = false;
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using ClassLibrary;
@@ -8,6 +8,12 @@ namespace ClassLibrary
 {
     public class clsOrderCollection
     {
+        //private data member for the list
+        List<clsOrder> MOrderList = new List<clsOrder>();
+
+        //public property for the address list
+        public List<clsOrder> OrderCollectionOrderList
+
         //public property for thisOrder
 
         //private data member for the list
@@ -45,7 +51,6 @@ namespace ClassLibrary
             }
             set
             {
-
                 //we shall worry about this later
             }
         }
@@ -64,7 +69,11 @@ namespace ClassLibrary
             //onject for data connect
             clsDataConnection DB = new clsDataConnection();
             //excute the stored procedure9
+
+            DB.Execute("sproc_tblOrders_selecAll");
+
             DB.Execute("sproc_tblOrders_selectAll");
+
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process
@@ -86,7 +95,7 @@ namespace ClassLibrary
 
             }
         }
-
+      
         public int Add()
         {
             //Adds a record to the database based on the values of mThisAddress
@@ -116,4 +125,3 @@ namespace ClassLibrary
         }
     }
 }
-        

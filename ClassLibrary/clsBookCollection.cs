@@ -5,9 +5,9 @@ namespace ClassLibrary
 {
     public class clsBookCollection
     {
-        List<clsbook> mBookList = new List<clsbook>();
+        private List<clsbook> mBookList = new List<clsbook>();
+        private clsbook mThisBook = new clsbook();
 
-        // Constructor for the class
         public clsBookCollection()
         {
             LoadBooksFromDatabase();
@@ -15,58 +15,87 @@ namespace ClassLibrary
 
         private void LoadBooksFromDatabase()
         {
-            // Variable for the index
             int Index = 0;
-            // Variable to store the record count
             int RecordCount = 0;
-            // Object for the data connection
             clsDataConnection DB = new clsDataConnection();
-            // Execute the stored procedure to fetch all books
             DB.Execute("sproc_tblbook_SelectAll");
-            // Get the count of records
             RecordCount = DB.Count;
-            // While there are records to process
+
             while (Index < RecordCount)
             {
-                // Create a blank book object
                 clsbook ABook = new clsbook();
-                // Read in the fields for the current record
                 ABook.BookId = Convert.ToInt32(DB.DataTable.Rows[Index]["BookId"]);
                 ABook.Title = Convert.ToString(DB.DataTable.Rows[Index]["Title"]);
                 ABook.Author = Convert.ToString(DB.DataTable.Rows[Index]["Author"]);
                 ABook.PublicationYear = Convert.ToDateTime(DB.DataTable.Rows[Index]["PublicationYear"]);
                 ABook.Price = Convert.ToDecimal(DB.DataTable.Rows[Index]["Price"]);
                 ABook.Description = Convert.ToString(DB.DataTable.Rows[Index]["Description"]);
+                ABook.BookManagement = Convert.ToString(DB.DataTable.Rows[Index]["BookManagement"]);
                 ABook.ImagePath = Convert.ToString(DB.DataTable.Rows[Index]["ImagePath"]);
-                // Add the record to the private data member
+
                 mBookList.Add(ABook);
-                // Point at the next record
                 Index++;
             }
         }
 
-        // Removed: private void AddTestData() method to ensure data is always loaded from the database
+        public int Add()
+        {
+            try
+            {
+                clsDataConnection DB = new clsDataConnection();
+
+                DB.AddParameter("@Title", mThisBook.Title);
+                DB.AddParameter("@Author", mThisBook.Author);
+                DB.AddParameter("@PublicationYear", mThisBook.PublicationYear);
+                DB.AddParameter("@Price", mThisBook.Price);
+                DB.AddParameter("@Description", mThisBook.Description);
+                DB.AddParameter("@ImagePath", mThisBook.ImagePath);  // Certifique-se de que esta é uma string base64
+
+                return DB.Execute("sproc_tblbook_Insert");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding new book: " + ex.Message);
+            }
+        }
+
+        public void Update()
+        {
+            try
+            {
+                clsDataConnection DB = new clsDataConnection();
+
+                DB.AddParameter("@BookId", mThisBook.BookId);
+                DB.AddParameter("@Title", mThisBook.Title);
+                DB.AddParameter("@Author", mThisBook.Author);
+                DB.AddParameter("@PublicationYear", mThisBook.PublicationYear);
+                DB.AddParameter("@Price", mThisBook.Price);
+                DB.AddParameter("@Description", mThisBook.Description);
+                DB.AddParameter("@ImagePath", mThisBook.ImagePath);  // Certifique-se de que esta é uma string base64
+
+                DB.Execute("sproc_tblBook_Update");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating book: " + ex.Message);
+            }
+        }
 
         public List<clsbook> BookList
         {
-            get
-            {
-                return mBookList;
-            }
-            set
-            {
-                mBookList = value;
-            }
+            get { return mBookList; }
+            set { mBookList = value; }
         }
 
         public int Count
         {
-            get
-            {
-                return mBookList.Count; // Ensuring this property is readonly
-            }
+            get { return mBookList.Count; }
         }
 
-        public clsbook ThisBook { get; set; }
+        public clsbook ThisBook
+        {
+            get { return mThisBook; }
+            set { mThisBook = value; }
+        }
     }
 }

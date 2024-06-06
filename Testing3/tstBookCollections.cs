@@ -134,6 +134,104 @@ namespace Testing3
             // Test to see that the two values are the same
             Assert.AreEqual(AllBook.Count, expectedCount);
         }
+        //##############################################ADD METHOD, UPDATE METHOD AND DELITE METOD FOR BOOK ###########################################################################
+        //ADD METOD
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsBookCollection AllBooks = new clsBookCollection();
+            // create the item of test data
+            clsbook TestItem = new clsbook();
+            // variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.Title = "New Book";
+            TestItem.Author = "Author Name";
+            TestItem.PublicationYear = DateTime.Now.Date;
+            TestItem.Price = 12.99m;
+            TestItem.Description = "Test Description";
+            TestItem.ImagePath = "test.jpg";
+            // set ThisBook to the test data
+            AllBooks.ThisBook = TestItem;
+            // add the record
+            PrimaryKey = AllBooks.Add();
+            // set the primary key of the test data
+            TestItem.BookId = PrimaryKey;
+            // find the record
+            bool Found = AllBooks.ThisBook.Find(PrimaryKey);
+            // test to see that the two values are the same
+            Assert.AreEqual(AllBooks.ThisBook, TestItem);
+        }
+        //Update
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsBookCollection AllBooks = new clsBookCollection();
+            // create the item of test data
+            clsbook TestItem = new clsbook();
+            // variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.Title = "Original Title";
+            TestItem.Author = "Original Author";
+            TestItem.PublicationYear = DateTime.Now.Date;
+            TestItem.Price = 10.99m;
+            TestItem.Description = "Original Description";
+            TestItem.ImagePath = "original.jpg";
+            // set ThisBook to the test data
+            AllBooks.ThisBook = TestItem;
+            // add the record
+            PrimaryKey = AllBooks.Add();
+            // set the primary key of the test data
+            TestItem.BookId = PrimaryKey;
+            // modify the test data
+            TestItem.Title = "Updated Title";
+            TestItem.Author = "Updated Author";
+            TestItem.PublicationYear = DateTime.Now.Date.AddYears(-1);
+            TestItem.Price = 15.99m;
+            TestItem.Description = "Updated Description";
+            TestItem.ImagePath = "updated.jpg";
+            // set ThisBook to the updated test data
+            AllBooks.ThisBook = TestItem;
+            // update the record
+            AllBooks.Update();
+            // find the record
+            bool Found = AllBooks.ThisBook.Find(PrimaryKey);
+            // test to see that the record was updated
+            Assert.AreEqual(AllBooks.ThisBook.Title, TestItem.Title);
+            Assert.AreEqual(AllBooks.ThisBook.Author, TestItem.Author);
+            Assert.AreEqual(AllBooks.ThisBook.PublicationYear, TestItem.PublicationYear);
+            Assert.AreEqual(AllBooks.ThisBook.Price, TestItem.Price);
+            Assert.AreEqual(AllBooks.ThisBook.Description, TestItem.Description);
+            Assert.AreEqual(AllBooks.ThisBook.ImagePath, TestItem.ImagePath);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //###########################################START TEST GENRE COLLECTIONS###############################################################
 
@@ -238,8 +336,63 @@ namespace Testing3
                 // Test to see if the two values are the same
                 Assert.AreEqual(AllGenre.GenreList.Count, TestList.Count);
             }
+            //############################################### Add Method ####################################################
+            [TestMethod]
+            public void AddMethodOK()
+            {
+                // create an instance of the class we want to create
+                clsGenresCollection AllGenre = new clsGenresCollection();
+                // create the item of test data
+                clsGenres TestItem = new clsGenres();
+                // variable to store the primary key
+                Int32 PrimaryKey = 0;
+                // set its properties
+                TestItem.BookGenre = "Science Fiction";
+                TestItem.BookId = 1; // Assuming 1 is a valid BookId for this test
+                                     // set ThisGenre to the test data
+                AllGenre.ThisGenre = TestItem;
+                // add the record
+                PrimaryKey = AllGenre.Add();
+                // set the primary key of the test data
+                TestItem.GenreId = PrimaryKey;
+                // find the record
+                bool Found = AllGenre.ThisGenre.Find(PrimaryKey);
+                // test to see that the two values are the same
+                Assert.AreEqual(AllGenre.ThisGenre, TestItem);
+            }
+            [TestMethod]
+            public void UpdateSingleGenreMethodOK()
+            {
+                // Create an instance of the class we want to create
+                clsGenresCollection AllGenre = new clsGenresCollection();
+                // Create the item of test data
+                clsGenres TestItem = new clsGenres();
+                // Variable to store the primary key
+                Int32 PrimaryKey = 0;
+                // Set its properties
+                TestItem.BookGenre = "Original Genre";
+                TestItem.BookId = 1; // Assuming 1 is a valid BookId for this test
+                                     // Set ThisGenre to the test data
+                AllGenre.ThisGenre = TestItem;
+                // Add the record
+                PrimaryKey = AllGenre.Add();
+                // Set the primary key of the test data
+                TestItem.GenreId = PrimaryKey;
+                // Modify the test data
+                TestItem.BookGenre = "Updated Genre";
+                TestItem.BookId = 2; // Assuming 2 is another valid BookId for this test
+                                     // Set ThisGenre to the updated test data
+                AllGenre.ThisGenre = TestItem;
+                // Update the record
+                AllGenre.Update();
+                // Find the record
+                bool Found = AllGenre.ThisGenre.Find(PrimaryKey);
+                // Test to see that the record was updated
+                Assert.AreEqual(AllGenre.ThisGenre.BookGenre, TestItem.BookGenre);
+                Assert.AreEqual(AllGenre.ThisGenre.BookId, TestItem.BookId);
+            }
 
-            // Remover o teste TwoRecordPresent ou ajustá-lo para uma verificação dinâmica.
         }
     }
+    
 }
