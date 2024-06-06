@@ -100,6 +100,7 @@ namespace ClassLibrary
             DB.Execute("sproc_tblSupplier_FilterBySupplierId");
             if(DB.Count == 1)
             {
+                //Comments
                 mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]); 
                 mContactNo = Convert.ToInt32(DB.DataTable.Rows[0]["ContactNo"]);
