@@ -43,6 +43,19 @@ namespace Testing1
             Assert.AreEqual(AllStaff.StaffList, TestList);
         }
         [TestMethod]
+        public void CountPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create some test data to assign to the property
+            int SomeCount = 2;
+            //assign the data to the property
+            AllStaff.Count = SomeCount;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStaff.Count, SomeCount);
+        }
+
+        [TestMethod]
         public void StaffPropertyOK()
         {
             //create an instance of the class we want to create
@@ -85,6 +98,19 @@ namespace Testing1
             AllStaff.StaffList = TestList;
             //test to see that the two values are the same
             Assert.AreEqual(AllStaff.StaffList.Count, TestList.Count);
+        }
+        [TestMethod]
+        public void TwoRecordsPresent()
+        {
+            // Create an instance of the class we want to test
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            // Add two records to the StaffList
+            AllStaff.StaffList.Add(new clsStaff());
+            AllStaff.StaffList.Add(new clsStaff());
+
+            // Test to see that the Count property equals 2
+            Assert.AreEqual(AllStaff.Count, 2);
         }
 
     }
