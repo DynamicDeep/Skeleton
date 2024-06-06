@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace ClassLibrary
 {
@@ -73,6 +74,18 @@ namespace ClassLibrary
                 _DateAdded = value;
             }
         }
+        private string _StockName;
+        public string StockName
+        {
+            get
+            {
+                return _StockName;
+            }
+            set
+            {
+                _StockName = value;
+            }
+        }
 
 
 
@@ -96,6 +109,7 @@ namespace ClassLibrary
                 _Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
                 _DateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 _SupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
+                _StockName = Convert.ToString(DB.DataTable.Rows[0]["StockName"]);
                 //returns that everything worked OK 
                 return true;
             }
@@ -107,7 +121,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(int bookId, int quantity, string dateAdded)
+        public string Valid(int bookId, int quantity, string dateAdded, string stockName)
         {
             // Create a String variable to store the error
             string Error = "";
@@ -137,10 +151,7 @@ namespace ClassLibrary
             try
             {
                 DateTemp = Convert.ToDateTime(dateAdded);
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    Error += "The date cannot be in the past: ";
-                }
+              
                 if (DateTemp > DateTime.Now.Date)
                 {
                     Error += "The date cannot be in the future: ";
@@ -150,12 +161,46 @@ namespace ClassLibrary
             {
                 Error += "The date was not a valid date: ";
             }
+            //if the stockname is blank
+            if (stockName.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Stock Name may not be blank";
 
-           
+            }
+            //if the stockname is more than 50 characters 
+            if (stockName.Length > 50)
+            {
+                //record the error
+                Error = Error + " The Stock Name may not be more than 50 characters";
+
+            }
+
+
 
             // Return any error messages
             return Error;
         }
+        public DataTable StatisticsGroupedByBookID()
+        {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_Count_GroupByBookID");
+            //There should be either zero one or more records
+            return DB.DataTable;
+        }
+        public DataTable StatisticsGroupedBySupplierID()
+        {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_Count_GroupBySupplierID");
+            //There should be either zero one or more records
+            return DB.DataTable;
+        }
+
+
 
     }
 }
