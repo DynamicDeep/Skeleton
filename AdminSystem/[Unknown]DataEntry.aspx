@@ -70,7 +70,7 @@
 }
 
 
-.Add-btn, .Update-btn, .Delete-btn {
+.Add-btn, .Find-btn, .Delete-btn {
     margin-top: 70px;
     margin-left: 30px;
     position: relative;
@@ -89,6 +89,8 @@
 
 
 
+
+
  
     </style>
 </head>
@@ -99,8 +101,12 @@
         </header>
 
         <main>
-            <div class="Hero-part">
+            <div class="Hero-part" id="chkActive">
                 <asp:Panel ID="Panel1" runat="server">
+                    <div class="input-box input">
+                         <asp:Label class="label" ID="LabelSupplierID" runat="server" Text="Supplier Id:"></asp:Label>
+                         <asp:TextBox ID="TextBoxSupplierId" runat="server"></asp:TextBox>
+                    </div>
                     <div class="input-box input">
                         <asp:Label class="label" ID="LabelName" runat="server" Text="Supplier Name:"></asp:Label>
                         <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox>
@@ -117,11 +123,16 @@
                         <asp:Label class="label" ID="LabelEmailId" runat="server" Text="Email ID: "></asp:Label>
                         <asp:TextBox ID="TextBoxEmailId" runat="server"></asp:TextBox>
                     </div>
-
+                     <div class="input-box input">
+                         <asp:Label class="label" ID="LabelSupplierDate" runat="server" Text="SupplierDate "></asp:Label>
+                         <asp:TextBox ID="TextBoxSupplierDate" runat="server"></asp:TextBox>
+                    </div>
+                    
                     <asp:Button ID="ButtonAdd" runat="server" Text="Order" CssClass="Add-btn" OnClick="ButtonAdd_Click" />
-                    <asp:Button ID="ButtonUpdate" runat="server" Text="Update" CssClass="Update-btn" OnClick="ButtonUpdate_Click" />
+                    <asp:Button ID="ButtonFind" runat="server" Text="Find" CssClass="Find-btn" OnClick="ButtonFind_Click" />
                     <asp:Button ID="ButtonDelete" runat="server" Text="Delete" CssClass="Delete-btn" OnClick="ButtonDelete_Click" />
                 </asp:Panel>
+                <asp:CheckBox ID="chkActive"  Text="Active" runat="server" />
             </div>
         </main>
     </form>

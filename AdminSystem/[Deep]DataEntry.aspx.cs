@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if(IsPostBack == false)
         {
             //if this is the not a new record
-            if(StockId != 1)
+            if(StockId != -1)
             {
                 //display the current data for the record
                 DisplayStock();
@@ -48,9 +48,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the supplier Id
         aStock.SupplierId = int.Parse(TextBoxSupplierID.Text);
 
+        //capture the stock name
+        string StockName = TextStockName.Text;
+
         string Error = "";
         //validate the data 
-        Error = aStock.Valid(BookId, Quantity, TextBoxDateAdded.Text);
+        Error = aStock.Valid(BookId, Quantity, TextBoxDateAdded.Text, TextStockName.Text);
         if(Error == "")
         {
             //capture the Stock Id
@@ -58,9 +61,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStock.BookId = BookId;
             aStock.Quantity = Quantity;
             aStock.DateAdded = DateAdded;
+            aStock.StockName = StockName;
             //create a new instance of the address collection 
             clsStockCollection StockList = new clsStockCollection();
-
             //if this is a new record i.e. StockId = -1 then add the data
             if(StockId == -1)
             {
@@ -113,6 +116,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             TextBoxDateAdded.Text = aStock.DateAdded.ToShortDateString();
             TextBoxQuantity.Text = aStock.Quantity.ToString();
             TextBoxSupplierID.Text = aStock.SupplierId.ToString();
+            TextStockName.Text = aStock.StockName.ToString();
 
         }
 
@@ -131,5 +135,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         TextBoxQuantity.Text = StockBook.ThisStock.Quantity.ToString();
         TextBoxDateAdded.Text = StockBook.ThisStock.DateAdded.ToString();
         TextBoxSupplierID.Text = StockBook.ThisStock.SupplierId.ToString();
+        TextStockName.Text = StockBook.ThisStock.StockName.ToString();
     }
 }

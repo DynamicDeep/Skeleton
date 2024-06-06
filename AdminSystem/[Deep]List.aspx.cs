@@ -21,7 +21,7 @@ public partial class _1_List : System.Web.UI.Page
         clsStockCollection stock = new clsStockCollection();
         lstStockList.DataSource = stock.StockList;
         lstStockList.DataValueField = "stockId";
-        lstStockList.DataTextField = "BookId";
+        lstStockList.DataTextField = "StockName";
         lstStockList.DataBind();    
 
     }
@@ -52,5 +52,45 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "please select a record from the list to edit ";
         }
+    }
+    protected void ButtonDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted 
+        Int32 StockId;
+        if(lstStockList.SelectedIndex != -1)
+        {
+            //get the primary key value of the session object 
+            StockId = Convert.ToInt32(lstStockList.SelectedValue);
+            //store the data in the session object 
+            Session["StockId"] = StockId;
+            //redirect to the delete page 
+            Response.Redirect("[Deep]ConfirmDelete.aspx");
+        }
+        else //if no record has been selected 
+        {
+            //display an error message 
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        clsStockCollection aStock = new clsStockCollection();
+        aStock.ReportByStockName(TextBoxFilter.Text);
+        lstStockList.DataSource = aStock.StockList;
+        lstStockList.DataValueField = "StockID";
+        lstStockList.DataTextField = "StockName";
+        lstStockList.DataBind();
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        clsStockCollection aStock = new clsStockCollection();
+        aStock.ReportByStockName("");
+        TextBoxFilter.Text = "";
+        lstStockList.DataSource= aStock.StockList;
+        lstStockList.DataValueField = "StockID";
+        lstStockList.DataTextField = "StockName";
+        lstStockList.DataBind();
     }
 }
