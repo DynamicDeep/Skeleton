@@ -33,7 +33,7 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderlist.DataValueField = "OrderId";
 
         // set the data field to display
-        lstOrderlist.DataTextField = "TotalCost";
+        lstOrderlist.DataTextField = "Address";
 
         // bind the data to the list
         lstOrderlist.DataBind();
