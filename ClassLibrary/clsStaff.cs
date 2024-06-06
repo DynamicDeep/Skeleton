@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClassLibrary
@@ -89,19 +91,19 @@ namespace ClassLibrary
             }
         }
         //private data member for the address
-        private Int32 _PositionId;
+        private Int32 _PositionID;
         //StaffPosition public property 
-        public Int32 PositionId
+        public Int32 PositionID
         {
             get
             {
                 //this line of code sends data out of the property 
-                return _PositionId;
+                return _PositionID;
             }
             set
             {
                 //this line of code allows data into property 
-                _PositionId = value;
+                _PositionID = value;
             }
         }
 
@@ -110,20 +112,20 @@ namespace ClassLibrary
         {
             //create an instance of the data connection 
             clsDataConnection DB = new clsDataConnection();
-            //add the parameter for the stock id to search for 
+            //add the parameter for the staff id to search for 
             DB.AddParameter("@StaffId", StaffId);
             //execute the stored procedure 
             DB.Execute("sproc_tblStaff_FilterByStaffId");
             //if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
-                //copy the data from the database to the private data memebers 
+                //copy the data from the database to the private data members 
                 _StaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
                 _StaffName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
                 _StaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
                 _StaffAddress = Convert.ToString(DB.DataTable.Rows[0]["StaffAddress"]);
                 _StaffPhoneNumber = Convert.ToInt32(DB.DataTable.Rows[0]["StaffPhoneNumber"]);
-                _PositionId = Convert.ToInt32(DB.DataTable.Rows[0]["PositionId"]);
+                _PositionID = Convert.ToInt32(DB.DataTable.Rows[0]["PositionID"]);
                 //returns that everything worked OK 
                 return true;
             }
@@ -134,5 +136,78 @@ namespace ClassLibrary
                 return false;
             }
         }
+        //Validation Method
+        public string Valid(int PositionID, string StaffName, string StaffEmail, string StaffAddress, string StaffPhoneNumber)
+        {
+            // Create a String variable to store the error
+            string Error = "";
+
+            // Validate PositionID
+            if (PositionID <= 0)
+            {
+                Error += "The PositionID may not be blank or zero. ";
+            }
+            if (PositionID > 10)
+            {
+                Error += "The PositionID must be less than or equal to 10. ";
+            }
+
+            // Validation for StaffName
+            if (string.IsNullOrWhiteSpace(StaffName))
+            {
+                Error += "Staff Name cannot be blank. ";
+            }
+            else if (StaffName.Length < 2 || StaffName.Length > 50)
+            {
+                Error += "Staff Name must be between 2 and 50 characters. ";
+            }
+
+            // Validation for StaffEmail
+            if (string.IsNullOrWhiteSpace(StaffEmail))
+            {
+                Error += "Staff Email cannot be blank. ";
+            }
+            else if (!IsValidEmail(StaffEmail))
+            {
+                Error += "Staff Email is not in a valid format. ";
+            }
+
+            // Validation for StaffAddress
+            if (string.IsNullOrWhiteSpace(StaffAddress))
+            {
+                Error += "Staff Address cannot be blank. ";
+            }
+            else if (StaffAddress.Length > 100)
+            {
+                Error += "Staff Address must be less than 100 characters. ";
+            }
+
+            // Validation for StaffPhoneNumber
+            if (string.IsNullOrWhiteSpace(StaffPhoneNumber))
+            {
+                Error += "Staff Phone Number cannot be blank. ";
+            }
+            else if (!Regex.IsMatch(StaffPhoneNumber, @"^\d{6}$"))
+            {
+                Error += "Staff Phone Number must contain exactly six digits. ";
+            }
+
+            // Return any error messages
+            return Error;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

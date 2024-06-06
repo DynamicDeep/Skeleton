@@ -39,31 +39,96 @@ public partial class _1_DataEntry : Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         // Create a new instance of clsStaff
-        clsStaff aStaff = new clsStaff();
+        clsStaff AStaff = new clsStaff();
 
-        // Capture the StaffId
-        aStaff.StaffId = int.Parse(txtStaffId.Text);
+        // Capture and parse StaffId
+        int staffId;
+        if (int.TryParse(txtStaffId.Text, out staffId))
+        {
+            AStaff.StaffId = staffId;
+        }
+        else
+        {
+            // Handle the case where StaffId is not a valid integer
+            // Return or show an error message
+            Response.Write("Invalid Staff ID.");
+            return;
+        }
 
         // Capture the StaffName
-        aStaff.StaffName = txtStaffName.Text;
+        string StaffName = txtStaffName.Text;
 
         // Capture the StaffAddress
-        aStaff.StaffAddress = txtStaffAddress.Text;
+        string StaffAddress = txtStaffAddress.Text;
 
         // Capture the StaffEmail
-        aStaff.StaffEmail = txtStaffEmail.Text;
+        string StaffEmail = txtStaffEmail.Text;
 
         // Capture the StaffPhoneNumber
-        aStaff.StaffPhoneNumber = int.Parse(txtStaffPhoneNumber.Text);
+        string StaffPhoneNumber = txtStaffPhoneNumber.Text;
 
-        // Capture the Staff Position
-        aStaff.PositionId = int.Parse(txtStaffPosition.Text);
+        // Capture and parse PositionId
+        int PositionId;
+        if (int.TryParse(txtStaffPosition.Text, out PositionId))
+        {
+            // Variable to store any error message
+            string Error = "";
 
-        // Store the staff object in the session
-        Session["aStaff"] = aStaff;
-        // Redirect to [Shaurya]Viewer.aspx
-        Response.Redirect("[Shaurya]Viewer.aspx", true);
+            // Validate the data
+            Error = AStaff.Valid(PositionId, StaffName, StaffEmail, StaffAddress, StaffPhoneNumber);
+            if (Error == "")
+            {
+                // Assign values to AStaff object
+                AStaff.PositionID = PositionId;
+                AStaff.StaffName = StaffName;
+                AStaff.StaffEmail = StaffEmail;
+                AStaff.StaffAddress = StaffAddress;
+                AStaff.StaffPhoneNumber = Convert.ToInt32(StaffPhoneNumber);
+
+                // Store the staff object in the session
+                Session["AStaff"] = AStaff;
+
+                // Create an instance of the clsStaffCollection class
+                clsStaffCollection AllStaff = new clsStaffCollection();
+
+                // If this is a new record i.e., StaffId = -1 then add the data
+                if (staffId == -1)
+                {
+                    // Set the ThisStaff property
+                    AllStaff.ThisStaff = AStaff;
+                    // Add the new record
+                    AllStaff.Add();
+                }
+                // Otherwise, update the record
+                else
+                {
+                    // Find the record to update
+                    AllStaff.ThisStaff.Find(staffId);
+                    // Update the ThisStaff property
+                    AllStaff.ThisStaff = AStaff;
+                    // Update the record
+                    AllStaff.Update();
+                }
+                // Redirect to the list page
+                Response.Redirect("[Shaurya]List.aspx");
+
+                // Redirect to [Shaurya]Viewer.aspx
+                Response.Redirect("[Shaurya]Viewer.aspx", true);
+            }
+            else
+            {
+                // Display validation errors
+                Response.Write(Error);
+            }
+        }
+        else
+        {
+            // Handle the case where PositionId is not a valid integer
+            // Return or show an error message
+            Response.Write("Invalid Position ID.");
+        }
     }
+
 
     private bool ValidateForm()
     {
@@ -139,7 +204,7 @@ public partial class _1_DataEntry : Page
             txtStaffAddress.Text = AStaff.StaffAddress;
             txtStaffEmail.Text = AStaff.StaffEmail;
             txtStaffPhoneNumber.Text = AStaff.StaffPhoneNumber.ToString();
-            txtStaffPosition.Text = AStaff.PositionId.ToString();
+            txtStaffPosition.Text = AStaff.PositionID.ToString();
         }
     }
 

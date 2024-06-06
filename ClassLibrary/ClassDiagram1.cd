@@ -1,2 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClassLibrary.clsbook">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECQACAAQAQAiAEAAgAAAAIAAAAgIgAAQCAAAAAAABAA=</HashCode>
+      <FileName>clsbook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsCustomer" Collapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAACAAAAAAAAAUAAQQAAAAAAABAAAAAA=</HashCode>
+      <FileName>clsCustomer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsCustomerInteraction" Collapsed="true">
+    <Position X="11" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAACAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>clsCustomerInteraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsGenres">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAACIAAAAAAAAAAAAAAIgAAAAAAAAAAAACA=</HashCode>
+      <FileName>clsGenres.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsOrderId">
+    <Position X="7.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAAAgAAAEABBAAAAQAAAEQIABACAAAABAAAAAA=</HashCode>
+      <FileName>clsOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsStaff" Collapsed="true">
+    <Position X="11" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAACAgAACAAAAgAAACAA=</HashCode>
+      <FileName>clsStaff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsStock" Collapsed="true">
+    <Position X="12.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIgAAgAAA=</HashCode>
+      <FileName>clsStock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsSupplier" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAgAEgAIA=</HashCode>
+      <FileName>clsSupplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.SubscriptionIdProperty" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SubscriptionIdProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clsDataConnection" Collapsed="true">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEIAAABAAAAEwAQAAAAAwCCAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>clsDataConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
 <ClassDiagram /> 

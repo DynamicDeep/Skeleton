@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Diagnostics.SymbolStore;
+using System.IO;
+using System.Net;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -19,7 +22,7 @@ namespace ClassLibrary
         {
             get { return mCustomerId; }
             set { mCustomerId = value; }
-        
+
         }
         private double mTotalCost;
         public double TotalCost
@@ -27,7 +30,7 @@ namespace ClassLibrary
             get { return mTotalCost; }
             set { mTotalCost = value; }
         }
-       
+
         private string mAddress;
         public string Address
         {
@@ -36,11 +39,18 @@ namespace ClassLibrary
         }
 
         private DateTime mDeliveryDate;
+        internal int AddOrderId;
+
         public DateTime DeliveryDate
         {
             get { return mDeliveryDate; }
             set { mDeliveryDate = value; }
         }
+
+        public int Orderid { get; set; }
+        public int Quantity { get; set; }
+        public DateTime DateAdded { get; set; }
+        public bool Active { get; set; }
 
         public bool Find(int OrderId)
         {
@@ -70,6 +80,58 @@ namespace ClassLibrary
 
             }
         }
-    }
 
+        
+
+        public string Valid(string CustomerId, string TotalCost, string Address, string DeliveryDate)
+        {
+            string Error = "";
+            DateTime DateTemp;
+
+            DateTemp = Convert.ToDateTime(DeliveryDate);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The data cannot be in the past : ";
+            }
+
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
+
+            return Error;
+        }
+
+    }
 }
+           
+
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+    
+      
+
+
+      
+       

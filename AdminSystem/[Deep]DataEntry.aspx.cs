@@ -8,9 +8,22 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+
+    //variable to store the primary key with page level scope
+    Int32 StockId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the Stock to be processed 
+        StockId = Convert.ToInt32(Session["StockId"]);
+        if(IsPostBack == false)
+        {
+            //if this is the not a new record
+            if(StockId != 1)
+            {
+                //display the current data for the record
+                DisplayStock();
+            }
+        }
     }
 
     protected void ButtonOrder_Click(object sender, EventArgs e)
@@ -40,13 +53,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = aStock.Valid(BookId, Quantity, TextBoxDateAdded.Text);
         if(Error == "")
         {
+            //capture the Stock Id
+            aStock.stockId = StockId; 
             aStock.BookId = BookId;
             aStock.Quantity = Quantity;
             aStock.DateAdded = DateAdded;
-            //store the BookId in the session object
-            Session["aStock"] = aStock;
-            //navigate to the view page 
-            Response.Redirect("[Deep]Viewer.aspx");
+            //create a new instance of the address collection 
+            clsStockCollection StockList = new clsStockCollection();
+
+            //if this is a new record i.e. StockId = -1 then add the data
+            if(StockId == -1)
+            {
+                // set the ThisAddress proprty
+                StockList.ThisStock = aStock;
+                //add the new record 
+                StockList.Add();
+            }
+
+            //otherwise it must be an update 
+            else
+            {
+                //find the record to update 
+                StockList.ThisStock.Find(StockId);
+                //set the ThisStock property 
+                StockList.ThisStock = aStock;
+                //Update the record 
+                StockList.Update();
+            }
+            
+            //redirect back to the list page 
+            Response.Redirect("[Deep]List.aspx");
         }
         else
         {
@@ -79,5 +115,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
             TextBoxSupplierID.Text = aStock.SupplierId.ToString();
 
         }
+
+       
+    }
+
+    void DisplayStock()
+    {
+        //create an instance of the Stock Book
+        clsStockCollection StockBook = new clsStockCollection();
+        //find the record to update 
+        StockBook.ThisStock.Find(StockId);
+        //display the data for the record 
+        TextBoxStockId.Text = StockBook.ThisStock.stockId.ToString();
+        TextBoxBookNo.Text = StockBook.ThisStock.BookId.ToString();
+        TextBoxQuantity.Text = StockBook.ThisStock.Quantity.ToString();
+        TextBoxDateAdded.Text = StockBook.ThisStock.DateAdded.ToString();
+        TextBoxSupplierID.Text = StockBook.ThisStock.SupplierId.ToString();
     }
 }

@@ -42,20 +42,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsbook.cs" />
+    <Compile Include="clsBookCollection.cs" />
+    <Compile Include="clsCustomer.cs" />
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsGenres.cs" />
+    <Compile Include="clsGenresCollection.cs" />
     <Compile Include="clsOrder.cs" />
-    <Compile Include="clsOrder.cs" />
+    <Compile Include="clsOrderCollection.cs" />
     <Compile Include="clsStaff.cs" />
+    <Compile Include="clsStaffCollection.cs" />
     <Compile Include="clsStock.cs" />
     <Compile Include="clsStockCollection.cs" />
     <Compile Include="clsSupplier.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerManager.cs" />
+    <Compile Include="MOrderList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
