@@ -12,32 +12,23 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
-    {   //check if the page is being loaded for the first time
-        if (!IsPostBack)
+    {
+        // converts the OrderId from the session to an int
+        OrderId = Convert.ToInt32(Session["OrderId"]);
+        if (!IsPostBack==false)
         {
-            //check if orderid is in the session
-            if (Session["OrderId"] != null)
-            {
-                // converts the OrderId from the session to an int
-                int OrderId = Convert.ToInt32(Session["OrderId"]);
-                if (OrderId != -1)
-                {
-                    DisplayaOrder(OrderId);
-                }
-
-            }
+           if (OrderId != -1)
+           {
+                DisplayaOrder();
+           }
         }
-
     }
-
     protected void BtnOK_Click(object sender, EventArgs e)
     {
         // Create an instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-
-        // Capture the OrderId
-        string OrderId = txtOrderID.Text;
 
         // Capture the CustomerId
         string CustomerId = txtCustomerId.Text;
@@ -97,16 +88,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    private clsOrderCollection clsOrderCollection()
-    {
-        throw new NotImplementedException();
-    }
-
     protected void BtnFind_Click(object sender, EventArgs e)
     {
-
+        //create an instance of the address class
+        clsOrder AnOrder = new clsOrder();
+        //create a variable to store the primary key
+        Int32 OrderId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the priamry key ennterd by the user
+        OrderId = Convert.ToInt32(txtOrderID.Text);
+        //find the record 
+        Found = AnOrder.Find(OrderId);
+        //if found
+        if (Found == true)
+        {
+            //display the value of the properties in the form
+            txtCustomerId.Text = AnOrder.CustomerId.ToString();
+            txtAddress.Text = AnOrder.Address;
+            txtTotalCost.Text = AnOrder.TotalCost.ToString();
+            txtDeliveryDate.Text = AnOrder.DeliveryDate.ToString();
+        }
     }
-    void DisplayaOrder(int OrderId)
+
+    void DisplayaOrder()
     {
         //create an instance of the order book
         clsOrderCollection OrderBook = new clsOrderCollection();
@@ -118,10 +123,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtTotalCost.Text = OrderBook.ThisOrder.TotalCost.ToString();
         txtAddress.Text = OrderBook.ThisOrder.Address.ToString();
         txtDeliveryDate.Text = OrderBook.ThisOrder.DeliveryDate.ToString();
-
-
     }
-
 }
     
-      
