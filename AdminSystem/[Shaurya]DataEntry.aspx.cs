@@ -79,7 +79,7 @@ public partial class _1_DataEntry : Page
             if (Error == "")
             {
                 // Assign values to AStaff object
-                AStaff.PositionId = PositionId;
+                AStaff.PositionID = PositionId;
                 AStaff.StaffName = StaffName;
                 AStaff.StaffEmail = StaffEmail;
                 AStaff.StaffAddress = StaffAddress;
@@ -180,7 +180,7 @@ public partial class _1_DataEntry : Page
             txtStaffAddress.Text = AStaff.StaffAddress;
             txtStaffEmail.Text = AStaff.StaffEmail;
             txtStaffPhoneNumber.Text = AStaff.StaffPhoneNumber.ToString();
-            txtStaffPosition.Text = AStaff.PositionId.ToString();
+            txtStaffPosition.Text = AStaff.PositionID.ToString();
         }
     }
 
