@@ -88,6 +88,30 @@ public partial class _1_DataEntry : Page
                 // Store the staff object in the session
                 Session["AStaff"] = AStaff;
 
+                // Create an instance of the clsStaffCollection class
+                clsStaffCollection AllStaff = new clsStaffCollection();
+
+                // If this is a new record i.e., StaffId = -1 then add the data
+                if (staffId == -1)
+                {
+                    // Set the ThisStaff property
+                    AllStaff.ThisStaff = AStaff;
+                    // Add the new record
+                    AllStaff.Add();
+                }
+                // Otherwise, update the record
+                else
+                {
+                    // Find the record to update
+                    AllStaff.ThisStaff.Find(staffId);
+                    // Update the ThisStaff property
+                    AllStaff.ThisStaff = AStaff;
+                    // Update the record
+                    AllStaff.Update();
+                }
+                // Redirect to the list page
+                Response.Redirect("[Shaurya]List.aspx");
+
                 // Redirect to [Shaurya]Viewer.aspx
                 Response.Redirect("[Shaurya]Viewer.aspx", true);
             }
