@@ -11,6 +11,8 @@ namespace ClassLibrary
     {
         // Private data member of the list
         List<clsStaff> mStaffList = new List<clsStaff>();
+        // Private data member for the ThisStaff
+        clsStaff _ThisStaff = new clsStaff();
 
         //public property of the staff list
         public List<clsStaff> StaffList
@@ -38,7 +40,18 @@ namespace ClassLibrary
                 //Updating soon
             }
         }
-        public clsStaff ThisStaff { get; set; }
+        // Public property for accessing ThisStaff
+        public clsStaff ThisStaff
+        {
+            get
+            {
+                return _ThisStaff;
+            }
+            set
+            {
+                _ThisStaff = value;
+            }
+        }
 
         // Constructor
         public clsStaffCollection()
@@ -71,6 +84,42 @@ namespace ClassLibrary
                 Index++;
             }
         }
+        public int Add()
+        {
+            // Adds a record to the database based on the values of ThisStaff
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            // Set the parameters for the stored procedure
+            DB.AddParameter("@StaffId", _ThisStaff.StaffId);
+            DB.AddParameter("@StaffName", _ThisStaff.StaffName);
+            DB.AddParameter("@StaffEmail", _ThisStaff.StaffEmail);
+            DB.AddParameter("@StaffAddress", _ThisStaff.StaffAddress);
+            DB.AddParameter("@StaffPhoneNumber", _ThisStaff.StaffPhoneNumber);
+            DB.AddParameter("@PositionID", _ThisStaff.PositionID);
+
+            // Execute the query returning the primary key value
+            return DB.Execute("sproc_TblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            // Update an existing record based on the values of ThisStaff
+            // Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            // Set the parameters for the new stored procedure
+            DB.AddParameter("@StaffId", _ThisStaff.StaffId);
+            DB.AddParameter("@StaffName", _ThisStaff.StaffName);
+            DB.AddParameter("@StaffEmail", _ThisStaff.StaffEmail);
+            DB.AddParameter("@StaffAddress", _ThisStaff.StaffAddress);
+            DB.AddParameter("@StaffPhoneNumber", _ThisStaff.StaffPhoneNumber);
+            DB.AddParameter("@PositionID", _ThisStaff.PositionID);
+
+            // Execute the query
+            DB.Execute("sproc_TblStaff_Update");
+        }
+
     }
 
 }

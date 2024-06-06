@@ -11,9 +11,9 @@
         <div>
         </div>
         <asp:ListBox ID="lstStaffList" runat="server" Height="630px" Width="1297px"></asp:ListBox>
-        <asp:Button ID="btnAdd" runat="server" Text="ADD" />
+        <asp:Button ID="btnAdd" runat="server" Text="ADD" OnClick="btnAdd_Click" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnEdit" runat="server" Text="EDIT" />
+        <asp:Button ID="btnEdit" runat="server" Text="EDIT" OnClick="btnEdit_Click" />
 &nbsp;<p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>

@@ -114,5 +114,93 @@ namespace Testing1
             Assert.AreEqual(AllStaff.Count, 2);
         }
 
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            // Create an instance of the class we want to test
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            // Create the item of the data
+            clsStaff TestItem = new clsStaff();
+
+            // Variable to store the primary key
+            Int32 PrimaryKey = 1;
+
+            // Set its properties
+            TestItem.StaffId = 1;
+            TestItem.StaffName = "Will";
+            TestItem.StaffEmail = "will@123.com";
+            TestItem.StaffAddress = "Westminister";
+            TestItem.StaffPhoneNumber = "123456";
+            TestItem.PositionID = 1;
+
+            // Set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+
+            // Add the record
+            PrimaryKey = AllStaff.Add();
+
+            // Find the record
+            TestItem.StaffId = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            // Test to see that the two values are the same
+            // Here, you would typically compare individual properties or check if the added staff member exists in the staff collection
+            Assert.AreEqual(AllStaff.ThisStaff.StaffId, TestItem.StaffId);
+            Assert.AreEqual(AllStaff.ThisStaff.StaffName, TestItem.StaffName);
+            Assert.AreEqual(AllStaff.ThisStaff.StaffEmail, TestItem.StaffEmail);
+            Assert.AreEqual(AllStaff.ThisStaff.StaffAddress, TestItem.StaffAddress);
+            Assert.AreEqual(AllStaff.ThisStaff.StaffPhoneNumber, TestItem.StaffPhoneNumber);
+            Assert.AreEqual(AllStaff.ThisStaff.PositionID, TestItem.PositionID);
+        }
+        public void UpdateMethodOK()
+        {
+            // Create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            // Create the item of the data
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+
+            // Set its properties
+            TestItem.StaffId = 1;
+            TestItem.StaffName = "Will";
+            TestItem.StaffEmail = "will@123.com";
+            TestItem.StaffAddress = "Westminister";
+            TestItem.StaffPhoneNumber = "123456";
+            TestItem.PositionID = 1;
+            // Assuming PositionID is a property of the Staff class
+
+            // Set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+
+            // Add the record
+            PrimaryKey = AllStaff.Add();
+
+            // Set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+
+            // Modify the test record
+            TestItem.StaffName = "Willy";
+            TestItem.StaffEmail = "willy@123.com";
+            TestItem.StaffAddress = "Greenwich";
+            TestItem.StaffPhoneNumber = "012345";
+            TestItem.PositionID = 1;
+            // Assuming PositionID is a property of the Staff class
+
+            // Set the record based on the new test data
+            AllStaff.ThisStaff = TestItem;
+
+            // Update the record
+            AllStaff.Update();
+
+            // Find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            // Test to see if ThisStaff matches the test data
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
+
     }
 }
