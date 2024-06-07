@@ -49,6 +49,7 @@
     <Compile Include="clsGenresCollection.cs" />
     <Compile Include="clsOrder.cs" />
     <Compile Include="clsOrderCollection.cs" />
+    <Compile Include="clsOrderUser.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="clsStaffCollection.cs" />
     <Compile Include="clsStock.cs" />
