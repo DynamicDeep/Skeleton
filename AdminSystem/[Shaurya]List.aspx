@@ -87,6 +87,8 @@ form {
             <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" Text="Clear Filter" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnReturn" runat="server" BackColor="Lime" Height="48px" OnClick="btnReturn_Click" Text="Return to Main Menu" Width="295px" />
         </p>
         <p>
             &nbsp;</p>

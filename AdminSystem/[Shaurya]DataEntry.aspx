@@ -115,6 +115,7 @@
                 <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-clear" OnClick="btnClear_Click" />
                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btnSubmit" OnClick="btnSubmit_Click" BackColor="#33CC33" Height="34px" Width="92px" />
                 <asp:Button ID="Button1" runat="server" BackColor="#CC6699" Height="36px" OnClick="Button1_Click" Text="Find" Width="77px" />
+                <asp:Button ID="btnReturnM" runat="server" BackColor="#FFFF66" Height="36px" OnClick="btnReturnM_Click" Text="MainMenu" Width="143px" />
             </div>
             <asp:Label ID="lblError" runat="server" CssClass="error-label"></asp:Label>
         </div>
